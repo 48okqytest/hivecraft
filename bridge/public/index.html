@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hivecraft — control room</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cpath fill='%23ffb547' d='M16 2l12 7v14l-12 7L4 23V9z'/%3E%3Cpath fill='%230b0e13' d='M16 9l6 3.5v7L16 23l-6-3.5v-7z'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header id="top">
+  <div class="brand"><svg viewBox="0 0 32 32" width="22" height="22"><path fill="#ffb547" d="M16 2l12 7v14l-12 7L4 23V9z"/><path fill="#0b0e13" d="M16 9l6 3.5v7L16 23l-6-3.5v-7z"/></svg><b>HIVECRAFT</b><span class="sub">control room</span></div>
+  <div class="goalbox">
+    <span class="lbl">GOAL</span>
+    <div id="goalText" class="goal-text" title="click to edit"></div>
+    <textarea id="goalEdit" class="goal-edit" rows="2" hidden></textarea>
+    <button id="goalSave" class="btn amber" hidden>Set goal</button>
+    <button id="goalCancel" class="btn ghost" hidden>Cancel</button>
+  </div>
+  <div class="stats"><span id="statBots"></span><span id="statTasks"></span><span id="conn" class="conn bad"><i></i><em>connecting</em></span></div>
+</header>
+
+<main id="grid">
+  <section class="panel" id="botsPanel">
+    <div class="ph"><h2>Agents</h2><span id="botCount" class="count"></span></div>
+    <div id="bots" class="scroll"></div>
+  </section>
+
+  <section class="panel" id="mapPanel">
+    <div class="ph vtabs">
+      <button class="vtab on" data-vtab="map">Map</button><button class="vtab" data-vtab="view3d">3D view</button><button class="vtab" data-vtab="album">Album <span id="albumCount" class="count"></span></button>
+      <span class="hint" id="mapHint">top-down · x → east · z ↓ south</span><span class="spacer"></span><span id="mapCoord" class="mono dim"></span>
+    </div>
+    <div id="mapWrap" class="vbody"><canvas id="map"></canvas></div>
+    <div id="view3d" class="vbody" hidden>
+      <div class="v3bar">
+        <select id="v3bot"></select>
+        <select id="v3radius" title="area radius"><option value="16">r16</option><option value="24" selected>r24</option><option value="32">r32</option><option value="48">r48</option></select>
+        <label class="chk"><input type="checkbox" data-t="xray"> x-ray</label>
+        <label class="chk"><input type="checkbox" data-t="night_vision"> night vision</label>
+        <label class="chk"><input type="checkbox" data-t="grid"> grid</label>
+        <label class="chk"><input type="checkbox" data-t="highlight" checked> highlight</label>
+        <label class="chk"><input type="checkbox" data-t="waypoints" checked> waypoints</label>
+        <label class="chk"><input type="checkbox" id="v3auto"> auto 10s</label>
+        <span class="spacer"></span>
+        <button class="btn tiny" id="v3reload">Refresh</button>
+        <button class="btn tiny amber" id="v3snap" title="save this camera angle to the album">📷 Snap</button>
+      </div>
+      <div id="v3wrap"><canvas id="v3gl"></canvas><canvas id="v3ov"></canvas><div id="v3msg" class="v3msg">pick a bot</div></div>
+    </div>
+    <div id="album" class="vbody" hidden>
+      <div class="v3bar"><select id="albAgent"><option value="">all agents</option></select><span class="hint">every view an agent takes lands here · click to enlarge</span></div>
+      <div id="albGrid" class="albgrid scroll"></div>
+    </div>
+  </section>
+
+  <section class="panel" id="boardPanel">
+    <div class="ph"><h2>Task board</h2><span class="spacer"></span>
+      <form id="taskForm" class="inline">
+        <input id="taskTitle" placeholder="New task…" autocomplete="off">
+        <select id="taskPrio"><option>normal</option><option>high</option><option>low</option></select>
+        <button class="btn amber" type="submit">Add</button>
+      </form>
+    </div>
+    <div id="board"></div>
+  </section>
+
+  <section class="panel" id="chatPanel">
+    <div class="ph"><h2>Team chat</h2><span class="spacer"></span><label class="chk"><input type="checkbox" id="showSys"> system</label></div>
+    <div id="chat" class="scroll"></div>
+    <form id="chatForm" class="composer">
+      <select id="chatTo"></select>
+      <input id="chatText" placeholder="Message the team…" autocomplete="off">
+      <button class="btn amber" type="submit">Send</button>
+    </form>
+  </section>
+
+  <section class="panel" id="sidePanel">
+    <div class="ph tabs">
+      <button class="tab on" data-tab="log">Agent log</button>
+      <button class="tab" data-tab="notes">Notes</button>
+      <button class="tab" data-tab="waypoints">Waypoints</button>
+      <button class="tab" data-tab="memory">Memory</button>
+    </div>
+    <div id="tab-log" class="tabbody">
+      <div id="logAgents" class="chips"></div>
+      <div id="logFilters" class="chips small"></div>
+      <div id="log" class="scroll mono"></div>
+    </div>
+    <div id="tab-notes" class="tabbody" hidden>
+      <div id="notes" class="scroll"></div>
+      <form id="noteForm" class="stack"><input id="noteKey" placeholder="key (e.g. iron)" autocomplete="off"><input id="noteText" placeholder="text" autocomplete="off"><button class="btn amber">Save note</button></form>
+    </div>
+    <div id="tab-waypoints" class="tabbody" hidden>
+      <div id="waypoints" class="scroll"></div>
+      <form id="wpForm" class="stack row"><input id="wpName" placeholder="name" autocomplete="off"><input id="wpX" placeholder="x" size="4"><input id="wpY" placeholder="y" size="4"><input id="wpZ" placeholder="z" size="4"><button class="btn amber">Add</button></form>
+    </div>
+    <div id="tab-memory" class="tabbody" hidden>
+      <div id="memAgents" class="chips"></div>
+      <pre id="memText" class="scroll mono memtext"></pre>
+    </div>
+  </section>
+</main>
+<script src="app.js"></script>
+<div id="lightbox" hidden><img id="lbImg" alt=""><div id="lbCap"></div></div>
+<script type="importmap">{ "imports": { "three": "/viewer/three/three.module.js", "three/addons/": "/viewer/three/" } }</script>
+<script type="module" src="viewer.js"></script>
+</body>
+</html>

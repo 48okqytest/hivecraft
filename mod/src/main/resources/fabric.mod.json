@@ -1,0 +1,20 @@
+{
+  "schemaVersion": 1,
+  "id": "hivecraft",
+  "version": "${version}",
+  "name": "Hivecraft Overlay",
+  "description": "Shows what the Hivecraft bots are doing: labels, trails, block attribution, ghost builds, waypoints, HUD.",
+  "authors": ["Hivecraft"],
+  "license": "MIT",
+  "environment": "client",
+  "entrypoints": {
+    "client": ["com.hivecraft.overlay.HivecraftMod"]
+  },
+  "mixins": ["hivecraft.mixins.json"],
+  "depends": {
+    "fabricloader": ">=0.16.0",
+    "minecraft": "~1.21.1",
+    "java": ">=21",
+    "fabric-api": "*"
+  }
+}

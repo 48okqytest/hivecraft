@@ -1,0 +1,143 @@
+// Wilder: capture REAL earnings JSON from the bridge offline (fake RCON, mock engine, spare port). Not part of the repo.
+import fs from 'node:fs';
+import os from 'node:os';
+import path from 'node:path';
+import { createRequire } from 'node:module';
+import { pathToFileURL } from 'node:url';
+const ROOT = process.argv[2];
+const OUT = process.argv[3];
+const req = createRequire(path.join(ROOT, 'package.json'));
+const { WebSocket } = req('ws');
+const imp = (p) => import(pathToFileURL(path.join(ROOT, p)).href);
+const CATALOG = path.join(ROOT, 'data', 'econ-catalog.json');
+class FakeMC {
+  constructor() {
+    this.inv = new Map();
+    this.online = new Set();
+    this.down = false;
+    this.cmds = [];
+    this.objectives = new Map();   // name -> criterion
+    this.scores = new Map();       // player -> Map(objective -> n)
+    this.day = 3;
+    this.daytime = 1000;
+    this.dims = new Map();         // player -> 'minecraft:overworld'
+    this.glue = '';                // how RCON joins the lines of `scoreboard players list` ('' or '\n')
+    this.listFormat = 'normal';    // 'weird' = unrecognised reply -> fallback to `players get`
+  }
+  has(p, item) { return this.inv.get(p)?.get(item) || 0; }
+  put(p, item, n) { const m = this.inv.get(p) || (this.inv.set(p, new Map()), this.inv.get(p)); m.set(item, (m.get(item) || 0) + n); }
+  _bump(p, crit, n) {
+    for (const [name, c] of this.objectives) if (c === crit) {
+      const m = this.scores.get(p) || (this.scores.set(p, new Map()), this.scores.get(p));
+      m.set(name, (m.get(name) || 0) + n);
+    }
+  }
+  kill(p, mob, n = 1) { this._bump(p, `minecraft.killed:minecraft.${mob}`, n); }
+  mine(p, block, n = 1) { this._bump(p, `minecraft.mined:minecraft.${block}`, n); }
+  count(prefix) { return this.cmds.filter((c) => c.startsWith(prefix)).length; }
+  rcon = async (cmd) => {
+    this.cmds.push(cmd);
+    await new Promise((r) => setTimeout(r, 1));
+    if (this.down) throw new Error('rcon: connect ECONNREFUSED 127.0.0.1:25591');
+    const w = cmd.split(' ');
+    if (w[0] === 'list') return `There are ${this.online.size} of a max of 20 players online: ${[...this.online].join(', ')}`;
+    if (w[0] === 'time' && w[1] === 'query') return `The time is ${w[2] === 'day' ? this.day : this.daytime}`;
+    if (w[0] === 'scoreboard' && w[1] === 'objectives' && w[2] === 'add') {
+      const [, , , name, crit] = w;
+      if (name.length > 16) return `The objective name '${name}' is too long`;
+      if (!/^minecraft\.(killed|mined):minecraft\.[a-z_]+$/.test(crit)) return `Unknown criterion '${crit}'`;
+      if (this.objectives.has(name)) return 'An objective already exists by that name';
+      this.objectives.set(name, crit);
+      return `Created new objective [${name}]`;
+    }
+    if (w[0] === 'scoreboard' && w[1] === 'players' && w[2] === 'list') {
+      const p = w[3];
+      if (this.listFormat === 'weird') return '???';
+      const m = [...(this.scores.get(p) || new Map())].filter(([o]) => this.objectives.has(o));
+      if (!m.length) return `${p} has no scores to show`;
+      return `${p} has ${m.length} scores:${this.glue}` + m.map(([o, n]) => `[${o}]: ${n}`).join(this.glue);
+    }
+    if (w[0] === 'scoreboard' && w[1] === 'players' && w[2] === 'get') {
+      const [, , , p, o] = w;
+      const v = this.scores.get(p)?.get(o);
+      return v === undefined ? `Can't get value of ${o} for ${p}; none is set` : `${p} has ${v} [${o}]`;
+    }
+    if (w[0] === 'data' && w[1] === 'get' && w[2] === 'entity') {
+      const p = w[3];
+      if (!this.online.has(p)) return 'No entity was found';
+      return `${p} has the following entity data: "${this.dims.get(p) || 'minecraft:overworld'}"`;
+    }
+    const [op, p, rawItem, nStr] = w;
+    if (op !== 'give' && op !== 'clear') return 'Unknown or incomplete command';
+    const item = rawItem.replace('minecraft:', '');
+    const n = Number(nStr);
+    if (!this.online.has(p)) return 'No player was found';
+    if (op === 'give') { this.put(p, item, n); return `Gave ${n} [${item}] to ${p}`; }
+    const have = this.has(p, item);
+    const take = Math.min(have, n);
+    if (!take) return `No items were found on player ${p}`;
+    this.inv.get(p).set(item, have - take);
+    return `Removed ${take} item(s) from player ${p}`;
+  };
+}
+
+function seeded(seed = 7) { return () => { seed = (seed * 1103515245 + 12345) & 0x7fffffff; return seed / 0x80000000; }; }
+
+const { createApp } = await imp('bridge/hub/app.js');
+const mock = await imp('test/hub-mock-engine.mjs');
+const tmp = fs.mkdtempSync(path.join(os.tmpdir(), 'wilder-cap-'));
+const PORT = 47991, BASE = `http://127.0.0.1:${PORT}`;
+const props = path.join(tmp, 'server.properties');
+fs.writeFileSync(props, 'level-name=worlds/world-capture\n');
+const mc = new FakeMC();
+mc.online = new Set(['robin_mc', 'Ash']);
+const app = createApp({ engine: mock, dataDir: tmp, port: PORT, econOpts: { rcon: mc.rcon, propsFile: props, catalogFile: CATALOG, timers: false, random: seeded(3) } });
+await app.start();
+const api = async (method, p, body) => { const r = await fetch(BASE + p, { method, headers: { 'content-type': 'application/json' }, body: body ? JSON.stringify(body) : undefined }); return { status: r.status, json: await r.json() }; };
+const out = {};
+const ws = new WebSocket(`ws://127.0.0.1:${PORT}/mod`);
+const got = [];
+ws.on('message', (d) => got.push(JSON.parse(String(d))));
+await new Promise((res, rej) => { ws.once('open', res); ws.once('error', rej); });
+ws.send(JSON.stringify({ t: 'hello', player: 'Robin', want: ['econ', 'board'] }));
+await new Promise((r) => setTimeout(r, 150));
+await api('POST', '/bots', { name: 'Ash' });
+await app.earn.poll(); // baselines + first jobs
+let r = await api('POST', '/board', { by: 'Robin', title: 'Fence the farm', reward: 40 }); out.boardPost = r.json;
+const tid = r.json.id;
+out.boardPostTooMuch = (await api('POST', '/board', { by: 'Robin', title: 'too much', reward: 5000 })).json;
+out.bountyAdd = (await api('POST', '/econ/bounty', { who: 'Ash', task: tid, amount: 5 })).json;
+r = await api('POST', '/board', { by: 'Robin', title: 'Bring torches', reward: 12 });
+const t2 = r.json.id;
+out.bountyCancel = (await api('POST', '/econ/bounty/cancel', { who: 'Robin', task: t2 })).json;
+await api('POST', `/board/${tid}/claim`, { by: 'Ash' });
+out.boardDone = (await api('POST', `/board/${tid}`, { by: 'Ash', status: 'done', note: 'fenced' })).json;
+r = await api('POST', '/board', { by: 'Robin', title: 'Mine 24 iron', reward: 30 });
+out.jobsGet = (await api('GET', '/econ/jobs')).json;
+const j = out.jobsGet.jobs[0];
+mc.put('robin_mc', j.item, 3);
+out.deliver = (await api('POST', '/econ/jobs/deliver', { who: 'Robin', id: j.id, count: 3 })).json;
+mc.kill('robin_mc', 'zombie', 2); mc.kill('robin_mc', 'skeleton', 1);
+mc.mine('robin_mc', 'diamond_ore', 1);
+mc.kill('Ash', 'creeper', 1);
+await app.earn.poll();
+mc.day += 1; await app.earn.poll();
+await new Promise((r) => setTimeout(r, 200));
+out.state = (await api('GET', '/econ/state?who=Robin')).json;
+out.bountiesGet = (await api('GET', '/econ/bounties')).json;
+out.bountiesAll = (await api('GET', '/econ/bounties?all=1')).json;
+out.earningsGet = (await api('GET', '/econ/earnings?who=Robin')).json;
+out.boardGet = (await api('GET', '/board')).json;
+out.init = got.find((m) => m.t === 'init')?.econ ?? null;
+out.ws = got.filter((m) => m.t !== 'init' && (m.t === 'econ' || m.t === 'board'));
+ws.close();
+await app.close();
+const offDir = path.join(tmp, 'off'); fs.mkdirSync(offDir);
+const off = createApp({ engine: mock, dataDir: offDir, port: PORT + 1, econOpts: { enabled: false, rcon: mc.rcon, propsFile: props, catalogFile: CATALOG } });
+await off.start();
+const o = await fetch(`http://127.0.0.1:${PORT + 1}/econ/state?who=Robin`);
+out.off = { status: o.status, json: await o.json() };
+await off.close();
+fs.writeFileSync(OUT, JSON.stringify(out, null, 1));
+console.log('captured', Object.keys(out).join(', '), 'ws events', out.ws.length);
+process.exit(0);

@@ -1,0 +1,3131 @@
+{
+ "boardPost": {
+  "id": 1,
+  "title": "Fence the farm",
+  "detail": "",
+  "status": "open",
+  "owner": null,
+  "priority": "normal",
+  "by": "Robin",
+  "notes": [],
+  "created": 1795315100137,
+  "updated": 1795315100137,
+  "reward": 40,
+  "rewardStatus": "open",
+  "rewardTo": null
+ },
+ "boardPostTooMuch": {
+  "ok": false,
+  "error": "not enough coins: have 60, need 5000 (the reward is held until the task is done)"
+ },
+ "bountyAdd": {
+  "ok": true,
+  "bounty": {
+   "task": 1,
+   "title": "Fence the farm",
+   "total": 45,
+   "funders": {
+    "Robin": 40,
+    "Ash": 5
+   },
+   "status": "open",
+   "owner": null,
+   "paidTo": null,
+   "created": 1795315100137
+  },
+  "task": {
+   "id": 1,
+   "title": "Fence the farm",
+   "detail": "",
+   "status": "open",
+   "owner": null,
+   "priority": "normal",
+   "by": "Robin",
+   "notes": [],
+   "created": 1795315100137,
+   "updated": 1795315100137,
+   "reward": 45,
+   "rewardStatus": "open",
+   "rewardTo": null
+  },
+  "balance": 95
+ },
+ "bountyCancel": {
+  "ok": true,
+  "bounty": {
+   "task": 2,
+   "title": "Bring torches",
+   "total": 0,
+   "funders": {},
+   "status": "refunded",
+   "owner": null,
+   "paidTo": null,
+   "created": 1795315100148,
+   "ended": 1795315100152
+  },
+  "refunded": 12,
+  "balance": 60
+ },
+ "boardDone": {
+  "id": 1,
+  "title": "Fence the farm",
+  "detail": "",
+  "status": "done",
+  "owner": "Ash",
+  "priority": "normal",
+  "by": "Robin",
+  "notes": [
+   "Ash: fenced"
+  ],
+  "created": 1795315100137,
+  "updated": 1795315100158,
+  "reward": 40,
+  "rewardStatus": "paid",
+  "rewardTo": "Ash"
+ },
+ "jobsGet": {
+  "ok": true,
+  "jobs": [
+   {
+    "id": 1,
+    "item": "bread",
+    "count": 8,
+    "left": 8,
+    "pay": 3,
+    "shopSell": 2,
+    "delivered": {},
+    "created": 1795315099556,
+    "expiresAt": 1795316249514,
+    "status": "open"
+   },
+   {
+    "id": 2,
+    "item": "string",
+    "count": 8,
+    "left": 8,
+    "pay": 2,
+    "shopSell": 1,
+    "delivered": {},
+    "created": 1795315099556,
+    "expiresAt": 1795316249514,
+    "status": "open"
+   },
+   {
+    "id": 3,
+    "item": "gunpowder",
+    "count": 6,
+    "left": 6,
+    "pay": 6,
+    "shopSell": 4,
+    "delivered": {},
+    "created": 1795315099556,
+    "expiresAt": 1795316249514,
+    "status": "open"
+   },
+   {
+    "id": 4,
+    "item": "copper_ingot",
+    "count": 12,
+    "left": 12,
+    "pay": 5,
+    "shopSell": 3,
+    "delivered": {},
+    "created": 1795315099556,
+    "expiresAt": 1795316249514,
+    "status": "open"
+   }
+  ],
+  "nextRotation": 1795316249514
+ },
+ "deliver": {
+  "ok": true,
+  "job": {
+   "id": 1,
+   "item": "bread",
+   "count": 8,
+   "left": 5,
+   "pay": 3,
+   "shopSell": 2,
+   "delivered": {
+    "Robin": 3
+   },
+   "created": 1795315099556,
+   "expiresAt": 1795316249514,
+   "status": "open"
+  },
+  "count": 3,
+  "requested": 3,
+  "earned": 9,
+  "balance": 39,
+  "tx": {
+   "id": 10,
+   "ts": 1795315100175,
+   "kind": "job_pay",
+   "from": "Server",
+   "to": "Robin",
+   "amount": 9,
+   "item": "bread",
+   "count": 3,
+   "note": "job #1"
+  }
+ },
+ "state": {
+  "ok": true,
+  "world": "world-capture",
+  "currency": "coins",
+  "rev": 51,
+  "startBalance": 100,
+  "me": {
+   "name": "Robin",
+   "balance": 96,
+   "held": 0
+  },
+  "wallets": {
+   "Robin": 96,
+   "Ash": 154
+  },
+  "shop": [
+   {
+    "item": "bread",
+    "buy": 6,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "apple",
+    "buy": 5,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_beef",
+    "buy": 10,
+    "sell": 4,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_porkchop",
+    "buy": 10,
+    "sell": 4,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_chicken",
+    "buy": 7,
+    "sell": 3,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_mutton",
+    "buy": 8,
+    "sell": 3,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_cod",
+    "buy": 6,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "baked_potato",
+    "buy": 5,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "carrot",
+    "buy": 3,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "potato",
+    "buy": 3,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "golden_carrot",
+    "buy": 40,
+    "sell": null,
+    "cat": "food"
+   },
+   {
+    "item": "beef",
+    "buy": null,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "porkchop",
+    "buy": null,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "chicken",
+    "buy": null,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "mutton",
+    "buy": null,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "wheat_seeds",
+    "buy": 2,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "beetroot_seeds",
+    "buy": 2,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "pumpkin_seeds",
+    "buy": 4,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "melon_seeds",
+    "buy": 4,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "wheat",
+    "buy": 3,
+    "sell": 1,
+    "cat": "farming"
+   },
+   {
+    "item": "sugar_cane",
+    "buy": 3,
+    "sell": 1,
+    "cat": "farming"
+   },
+   {
+    "item": "bone_meal",
+    "buy": 3,
+    "sell": 1,
+    "cat": "farming"
+   },
+   {
+    "item": "oak_sapling",
+    "buy": 3,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "spruce_sapling",
+    "buy": 3,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "birch_sapling",
+    "buy": 3,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "oak_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "spruce_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "birch_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "jungle_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "acacia_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "dark_oak_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "oak_planks",
+    "buy": 1,
+    "sell": null,
+    "cat": "wood"
+   },
+   {
+    "item": "spruce_planks",
+    "buy": 1,
+    "sell": null,
+    "cat": "wood"
+   },
+   {
+    "item": "stick",
+    "buy": 1,
+    "sell": null,
+    "cat": "wood"
+   },
+   {
+    "item": "cobblestone",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "stone",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "stone_bricks",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "dirt",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "sand",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "gravel",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "glass",
+    "buy": 3,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "bricks",
+    "buy": 4,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "white_wool",
+    "buy": 4,
+    "sell": 1,
+    "cat": "building"
+   },
+   {
+    "item": "oak_door",
+    "buy": 5,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "ladder",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "oak_stairs",
+    "buy": 3,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "oak_slab",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "glass_pane",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "torch",
+    "buy": 1,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "lantern",
+    "buy": 12,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "crafting_table",
+    "buy": 4,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "furnace",
+    "buy": 8,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "chest",
+    "buy": 8,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "white_bed",
+    "buy": 25,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "red_bed",
+    "buy": 25,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "bucket",
+    "buy": 30,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "water_bucket",
+    "buy": 32,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "shield",
+    "buy": 25,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "oak_boat",
+    "buy": 6,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "wooden_pickaxe",
+    "buy": 4,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_pickaxe",
+    "buy": 8,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_axe",
+    "buy": 8,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_shovel",
+    "buy": 5,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_sword",
+    "buy": 8,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_pickaxe",
+    "buy": 45,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_axe",
+    "buy": 45,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_shovel",
+    "buy": 20,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_sword",
+    "buy": 35,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_hoe",
+    "buy": 30,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "shears",
+    "buy": 25,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "fishing_rod",
+    "buy": 10,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "bow",
+    "buy": 18,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "arrow",
+    "buy": 1,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "flint_and_steel",
+    "buy": 15,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "leather_helmet",
+    "buy": 10,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "leather_chestplate",
+    "buy": 16,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_helmet",
+    "buy": 60,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_chestplate",
+    "buy": 95,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_leggings",
+    "buy": 85,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_boots",
+    "buy": 50,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "coal",
+    "buy": 4,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "charcoal",
+    "buy": 4,
+    "sell": 1,
+    "cat": "ores"
+   },
+   {
+    "item": "raw_iron",
+    "buy": null,
+    "sell": 5,
+    "cat": "ores"
+   },
+   {
+    "item": "iron_ingot",
+    "buy": 15,
+    "sell": 7,
+    "cat": "ores"
+   },
+   {
+    "item": "raw_copper",
+    "buy": null,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "copper_ingot",
+    "buy": 6,
+    "sell": 3,
+    "cat": "ores"
+   },
+   {
+    "item": "raw_gold",
+    "buy": null,
+    "sell": 8,
+    "cat": "ores"
+   },
+   {
+    "item": "gold_ingot",
+    "buy": 25,
+    "sell": 12,
+    "cat": "ores"
+   },
+   {
+    "item": "redstone",
+    "buy": 5,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "lapis_lazuli",
+    "buy": 6,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "diamond",
+    "buy": 120,
+    "sell": 60,
+    "cat": "ores"
+   },
+   {
+    "item": "emerald",
+    "buy": 80,
+    "sell": 40,
+    "cat": "ores"
+   },
+   {
+    "item": "rotten_flesh",
+    "buy": null,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "bone",
+    "buy": null,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "string",
+    "buy": 3,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "spider_eye",
+    "buy": null,
+    "sell": 2,
+    "cat": "mob drops"
+   },
+   {
+    "item": "gunpowder",
+    "buy": 10,
+    "sell": 4,
+    "cat": "mob drops"
+   },
+   {
+    "item": "ender_pearl",
+    "buy": 40,
+    "sell": 15,
+    "cat": "mob drops"
+   },
+   {
+    "item": "leather",
+    "buy": 6,
+    "sell": 2,
+    "cat": "mob drops"
+   },
+   {
+    "item": "feather",
+    "buy": 2,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "slime_ball",
+    "buy": 12,
+    "sell": 5,
+    "cat": "mob drops"
+   }
+  ],
+  "shops": [],
+  "listings": [],
+  "auctions": [],
+  "tx": [
+   {
+    "id": 15,
+    "ts": 1795315100289,
+    "kind": "wage",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 10,
+    "note": "day 4"
+   },
+   {
+    "id": 13,
+    "ts": 1795315100227,
+    "kind": "world_first",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 13,
+    "note": "world first: first diamond"
+   },
+   {
+    "id": 12,
+    "ts": 1795315100227,
+    "kind": "milestone",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 25,
+    "note": "first diamond"
+   },
+   {
+    "id": 11,
+    "ts": 1795315100227,
+    "kind": "mob_bounty",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 9,
+    "note": "2 zombie, 1 skeleton"
+   },
+   {
+    "id": 10,
+    "ts": 1795315100175,
+    "kind": "job_pay",
+    "from": "Server",
+    "to": "Robin",
+    "amount": 9,
+    "item": "bread",
+    "count": 3,
+    "note": "job #1"
+   },
+   {
+    "id": 9,
+    "ts": 1795315100163,
+    "kind": "bounty_hold",
+    "from": "Robin",
+    "to": "Escrow",
+    "amount": 30,
+    "note": "bounty on task #3 Mine 24 iron"
+   },
+   {
+    "id": 6,
+    "ts": 1795315100152,
+    "kind": "bounty_refund",
+    "from": "Escrow",
+    "to": "Robin",
+    "amount": 12,
+    "note": "bounty on task #2 withdrawn"
+   },
+   {
+    "id": 5,
+    "ts": 1795315100148,
+    "kind": "bounty_hold",
+    "from": "Robin",
+    "to": "Escrow",
+    "amount": 12,
+    "note": "bounty on task #2 Bring torches"
+   },
+   {
+    "id": 3,
+    "ts": 1795315100137,
+    "kind": "bounty_hold",
+    "from": "Robin",
+    "to": "Escrow",
+    "amount": 40,
+    "note": "bounty on task #1 Fence the farm"
+   },
+   {
+    "id": 1,
+    "ts": 1795315099311,
+    "kind": "start",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 100,
+    "note": "starting balance"
+   }
+  ],
+  "deliveries": [],
+  "jobs": [
+   {
+    "id": 5,
+    "item": "gold_ingot",
+    "count": 4,
+    "left": 4,
+    "pay": 18,
+    "shopSell": 12,
+    "delivered": {},
+    "created": 1795315100290,
+    "expiresAt": 1795316250244,
+    "status": "open"
+   },
+   {
+    "id": 6,
+    "item": "rotten_flesh",
+    "count": 16,
+    "left": 16,
+    "pay": 2,
+    "shopSell": 1,
+    "delivered": {},
+    "created": 1795315100290,
+    "expiresAt": 1795316250244,
+    "status": "open"
+   },
+   {
+    "id": 7,
+    "item": "redstone",
+    "count": 16,
+    "left": 16,
+    "pay": 3,
+    "shopSell": 2,
+    "delivered": {},
+    "created": 1795315100290,
+    "expiresAt": 1795316250244,
+    "status": "open"
+   }
+  ],
+  "nextRotation": 1795316250244,
+  "bounties": [
+   {
+    "task": 3,
+    "title": "Mine 24 iron",
+    "total": 30,
+    "funders": {
+     "Robin": 30
+    },
+    "status": "open",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100163
+   }
+  ],
+  "earnings": {
+   "ok": true,
+   "rates": {
+    "mobs": {
+     "zombie": 3,
+     "husk": 3,
+     "drowned": 3,
+     "zombie_villager": 3,
+     "skeleton": 3,
+     "stray": 3,
+     "bogged": 3,
+     "creeper": 4,
+     "spider": 2,
+     "cave_spider": 3,
+     "enderman": 6,
+     "witch": 8,
+     "slime": 1,
+     "magma_cube": 2,
+     "phantom": 5,
+     "pillager": 5,
+     "vindicator": 8,
+     "evoker": 15,
+     "ravager": 20,
+     "vex": 2,
+     "silverfish": 1,
+     "endermite": 1,
+     "guardian": 6,
+     "blaze": 6,
+     "ghast": 8,
+     "wither_skeleton": 10,
+     "hoglin": 5,
+     "zoglin": 5,
+     "piglin_brute": 10,
+     "shulker": 6,
+     "breeze": 8
+    },
+    "mobCapPerMinute": 60,
+    "milestones": [
+     {
+      "id": "diamond",
+      "label": "first diamond",
+      "reward": 25,
+      "first": 13
+     },
+     {
+      "id": "deepslate_diamond",
+      "label": "first deepslate diamond",
+      "reward": 30,
+      "first": 15
+     },
+     {
+      "id": "emerald",
+      "label": "first emerald",
+      "reward": 20,
+      "first": 10
+     },
+     {
+      "id": "ancient_debris",
+      "label": "first ancient debris",
+      "reward": 60,
+      "first": 30
+     },
+     {
+      "id": "nether",
+      "label": "first trip to the Nether",
+      "reward": 40,
+      "first": 20
+     },
+     {
+      "id": "end",
+      "label": "first trip to the End",
+      "reward": 100,
+      "first": 50
+     }
+    ],
+    "wage": 10,
+    "jobPremiumPct": 50,
+    "bounties": true
+   },
+   "nextSunrise": 1795316250244,
+   "day": 4,
+   "who": "Robin",
+   "totals": {
+    "mob": 9,
+    "job": 9,
+    "bounty": 0,
+    "milestone": 38,
+    "wage": 10,
+    "today": 10,
+    "all": 66
+   },
+   "milestones": [
+    {
+     "id": "diamond",
+     "label": "first diamond",
+     "reward": 25,
+     "first": 13,
+     "done": true,
+     "ts": 1795315100177,
+     "firstBy": "Robin",
+     "worldFirst": true
+    },
+    {
+     "id": "deepslate_diamond",
+     "label": "first deepslate diamond",
+     "reward": 30,
+     "first": 15,
+     "done": false
+    },
+    {
+     "id": "emerald",
+     "label": "first emerald",
+     "reward": 20,
+     "first": 10,
+     "done": false
+    },
+    {
+     "id": "ancient_debris",
+     "label": "first ancient debris",
+     "reward": 60,
+     "first": 30,
+     "done": false
+    },
+    {
+     "id": "nether",
+     "label": "first trip to the Nether",
+     "reward": 40,
+     "first": 20,
+     "done": false
+    },
+    {
+     "id": "end",
+     "label": "first trip to the End",
+     "reward": 100,
+     "first": 50,
+     "done": false
+    }
+   ],
+   "recent": [
+    {
+     "id": 15,
+     "ts": 1795315100289,
+     "kind": "wage",
+     "from": "Bank",
+     "to": "Robin",
+     "amount": 10,
+     "note": "day 4"
+    },
+    {
+     "id": 13,
+     "ts": 1795315100227,
+     "kind": "world_first",
+     "from": "Bank",
+     "to": "Robin",
+     "amount": 13,
+     "note": "world first: first diamond"
+    },
+    {
+     "id": 12,
+     "ts": 1795315100227,
+     "kind": "milestone",
+     "from": "Bank",
+     "to": "Robin",
+     "amount": 25,
+     "note": "first diamond"
+    },
+    {
+     "id": 11,
+     "ts": 1795315100227,
+     "kind": "mob_bounty",
+     "from": "Bank",
+     "to": "Robin",
+     "amount": 9,
+     "note": "2 zombie, 1 skeleton"
+    },
+    {
+     "id": 10,
+     "ts": 1795315100175,
+     "kind": "job_pay",
+     "from": "Server",
+     "to": "Robin",
+     "amount": 9,
+     "item": "bread",
+     "count": 3,
+     "note": "job #1"
+    }
+   ]
+  }
+ },
+ "bountiesGet": {
+  "ok": true,
+  "bounties": [
+   {
+    "task": 3,
+    "title": "Mine 24 iron",
+    "total": 30,
+    "funders": {
+     "Robin": 30
+    },
+    "status": "open",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100163
+   }
+  ]
+ },
+ "bountiesAll": {
+  "ok": true,
+  "bounties": [
+   {
+    "task": 3,
+    "title": "Mine 24 iron",
+    "total": 30,
+    "funders": {
+     "Robin": 30
+    },
+    "status": "open",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100163
+   },
+   {
+    "task": 1,
+    "title": "Fence the farm",
+    "total": 40,
+    "funders": {
+     "Robin": 40
+    },
+    "status": "paid",
+    "owner": "Ash",
+    "paidTo": "Ash",
+    "created": 1795315100137,
+    "ended": 1795315100159
+   },
+   {
+    "task": 2,
+    "title": "Bring torches",
+    "total": 0,
+    "funders": {},
+    "status": "refunded",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100148,
+    "ended": 1795315100152
+   }
+  ]
+ },
+ "earningsGet": {
+  "ok": true,
+  "rates": {
+   "mobs": {
+    "zombie": 3,
+    "husk": 3,
+    "drowned": 3,
+    "zombie_villager": 3,
+    "skeleton": 3,
+    "stray": 3,
+    "bogged": 3,
+    "creeper": 4,
+    "spider": 2,
+    "cave_spider": 3,
+    "enderman": 6,
+    "witch": 8,
+    "slime": 1,
+    "magma_cube": 2,
+    "phantom": 5,
+    "pillager": 5,
+    "vindicator": 8,
+    "evoker": 15,
+    "ravager": 20,
+    "vex": 2,
+    "silverfish": 1,
+    "endermite": 1,
+    "guardian": 6,
+    "blaze": 6,
+    "ghast": 8,
+    "wither_skeleton": 10,
+    "hoglin": 5,
+    "zoglin": 5,
+    "piglin_brute": 10,
+    "shulker": 6,
+    "breeze": 8
+   },
+   "mobCapPerMinute": 60,
+   "milestones": [
+    {
+     "id": "diamond",
+     "label": "first diamond",
+     "reward": 25,
+     "first": 13
+    },
+    {
+     "id": "deepslate_diamond",
+     "label": "first deepslate diamond",
+     "reward": 30,
+     "first": 15
+    },
+    {
+     "id": "emerald",
+     "label": "first emerald",
+     "reward": 20,
+     "first": 10
+    },
+    {
+     "id": "ancient_debris",
+     "label": "first ancient debris",
+     "reward": 60,
+     "first": 30
+    },
+    {
+     "id": "nether",
+     "label": "first trip to the Nether",
+     "reward": 40,
+     "first": 20
+    },
+    {
+     "id": "end",
+     "label": "first trip to the End",
+     "reward": 100,
+     "first": 50
+    }
+   ],
+   "wage": 10,
+   "jobPremiumPct": 50,
+   "bounties": true
+  },
+  "nextSunrise": 1795316250244,
+  "day": 4,
+  "who": "Robin",
+  "totals": {
+   "mob": 9,
+   "job": 9,
+   "bounty": 0,
+   "milestone": 38,
+   "wage": 10,
+   "today": 10,
+   "all": 66
+  },
+  "milestones": [
+   {
+    "id": "diamond",
+    "label": "first diamond",
+    "reward": 25,
+    "first": 13,
+    "done": true,
+    "ts": 1795315100177,
+    "firstBy": "Robin",
+    "worldFirst": true
+   },
+   {
+    "id": "deepslate_diamond",
+    "label": "first deepslate diamond",
+    "reward": 30,
+    "first": 15,
+    "done": false
+   },
+   {
+    "id": "emerald",
+    "label": "first emerald",
+    "reward": 20,
+    "first": 10,
+    "done": false
+   },
+   {
+    "id": "ancient_debris",
+    "label": "first ancient debris",
+    "reward": 60,
+    "first": 30,
+    "done": false
+   },
+   {
+    "id": "nether",
+    "label": "first trip to the Nether",
+    "reward": 40,
+    "first": 20,
+    "done": false
+   },
+   {
+    "id": "end",
+    "label": "first trip to the End",
+    "reward": 100,
+    "first": 50,
+    "done": false
+   }
+  ],
+  "recent": [
+   {
+    "id": 15,
+    "ts": 1795315100289,
+    "kind": "wage",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 10,
+    "note": "day 4"
+   },
+   {
+    "id": 13,
+    "ts": 1795315100227,
+    "kind": "world_first",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 13,
+    "note": "world first: first diamond"
+   },
+   {
+    "id": 12,
+    "ts": 1795315100227,
+    "kind": "milestone",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 25,
+    "note": "first diamond"
+   },
+   {
+    "id": 11,
+    "ts": 1795315100227,
+    "kind": "mob_bounty",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 9,
+    "note": "2 zombie, 1 skeleton"
+   },
+   {
+    "id": 10,
+    "ts": 1795315100175,
+    "kind": "job_pay",
+    "from": "Server",
+    "to": "Robin",
+    "amount": 9,
+    "item": "bread",
+    "count": 3,
+    "note": "job #1"
+   }
+  ]
+ },
+ "boardGet": [
+  {
+   "id": 1,
+   "title": "Fence the farm",
+   "detail": "",
+   "status": "done",
+   "owner": "Ash",
+   "priority": "normal",
+   "by": "Robin",
+   "notes": [
+    "Ash: fenced"
+   ],
+   "created": 1795315100137,
+   "updated": 1795315100158,
+   "reward": 40,
+   "rewardStatus": "paid",
+   "rewardTo": "Ash"
+  },
+  {
+   "id": 2,
+   "title": "Bring torches",
+   "detail": "",
+   "status": "open",
+   "owner": null,
+   "priority": "normal",
+   "by": "Robin",
+   "notes": [],
+   "created": 1795315100148,
+   "updated": 1795315100148,
+   "reward": 0,
+   "rewardStatus": "refunded",
+   "rewardTo": null
+  },
+  {
+   "id": 3,
+   "title": "Mine 24 iron",
+   "detail": "",
+   "status": "open",
+   "owner": null,
+   "priority": "normal",
+   "by": "Robin",
+   "notes": [],
+   "created": 1795315100163,
+   "updated": 1795315100163,
+   "reward": 30,
+   "rewardStatus": "open",
+   "rewardTo": null
+  }
+ ],
+ "init": {
+  "ok": true,
+  "world": "world-capture",
+  "currency": "coins",
+  "rev": 2,
+  "startBalance": 100,
+  "me": {
+   "name": "Robin",
+   "balance": 100,
+   "held": 0
+  },
+  "wallets": {
+   "Robin": 100
+  },
+  "shop": [
+   {
+    "item": "bread",
+    "buy": 6,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "apple",
+    "buy": 5,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_beef",
+    "buy": 10,
+    "sell": 4,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_porkchop",
+    "buy": 10,
+    "sell": 4,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_chicken",
+    "buy": 7,
+    "sell": 3,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_mutton",
+    "buy": 8,
+    "sell": 3,
+    "cat": "food"
+   },
+   {
+    "item": "cooked_cod",
+    "buy": 6,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "baked_potato",
+    "buy": 5,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "carrot",
+    "buy": 3,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "potato",
+    "buy": 3,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "golden_carrot",
+    "buy": 40,
+    "sell": null,
+    "cat": "food"
+   },
+   {
+    "item": "beef",
+    "buy": null,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "porkchop",
+    "buy": null,
+    "sell": 2,
+    "cat": "food"
+   },
+   {
+    "item": "chicken",
+    "buy": null,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "mutton",
+    "buy": null,
+    "sell": 1,
+    "cat": "food"
+   },
+   {
+    "item": "wheat_seeds",
+    "buy": 2,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "beetroot_seeds",
+    "buy": 2,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "pumpkin_seeds",
+    "buy": 4,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "melon_seeds",
+    "buy": 4,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "wheat",
+    "buy": 3,
+    "sell": 1,
+    "cat": "farming"
+   },
+   {
+    "item": "sugar_cane",
+    "buy": 3,
+    "sell": 1,
+    "cat": "farming"
+   },
+   {
+    "item": "bone_meal",
+    "buy": 3,
+    "sell": 1,
+    "cat": "farming"
+   },
+   {
+    "item": "oak_sapling",
+    "buy": 3,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "spruce_sapling",
+    "buy": 3,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "birch_sapling",
+    "buy": 3,
+    "sell": null,
+    "cat": "farming"
+   },
+   {
+    "item": "oak_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "spruce_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "birch_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "jungle_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "acacia_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "dark_oak_log",
+    "buy": 4,
+    "sell": 1,
+    "cat": "wood"
+   },
+   {
+    "item": "oak_planks",
+    "buy": 1,
+    "sell": null,
+    "cat": "wood"
+   },
+   {
+    "item": "spruce_planks",
+    "buy": 1,
+    "sell": null,
+    "cat": "wood"
+   },
+   {
+    "item": "stick",
+    "buy": 1,
+    "sell": null,
+    "cat": "wood"
+   },
+   {
+    "item": "cobblestone",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "stone",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "stone_bricks",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "dirt",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "sand",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "gravel",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "glass",
+    "buy": 3,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "bricks",
+    "buy": 4,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "white_wool",
+    "buy": 4,
+    "sell": 1,
+    "cat": "building"
+   },
+   {
+    "item": "oak_door",
+    "buy": 5,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "ladder",
+    "buy": 2,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "oak_stairs",
+    "buy": 3,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "oak_slab",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "glass_pane",
+    "buy": 1,
+    "sell": null,
+    "cat": "building"
+   },
+   {
+    "item": "torch",
+    "buy": 1,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "lantern",
+    "buy": 12,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "crafting_table",
+    "buy": 4,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "furnace",
+    "buy": 8,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "chest",
+    "buy": 8,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "white_bed",
+    "buy": 25,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "red_bed",
+    "buy": 25,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "bucket",
+    "buy": 30,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "water_bucket",
+    "buy": 32,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "shield",
+    "buy": 25,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "oak_boat",
+    "buy": 6,
+    "sell": null,
+    "cat": "utility"
+   },
+   {
+    "item": "wooden_pickaxe",
+    "buy": 4,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_pickaxe",
+    "buy": 8,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_axe",
+    "buy": 8,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_shovel",
+    "buy": 5,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "stone_sword",
+    "buy": 8,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_pickaxe",
+    "buy": 45,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_axe",
+    "buy": 45,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_shovel",
+    "buy": 20,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_sword",
+    "buy": 35,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "iron_hoe",
+    "buy": 30,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "shears",
+    "buy": 25,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "fishing_rod",
+    "buy": 10,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "bow",
+    "buy": 18,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "arrow",
+    "buy": 1,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "flint_and_steel",
+    "buy": 15,
+    "sell": null,
+    "cat": "tools"
+   },
+   {
+    "item": "leather_helmet",
+    "buy": 10,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "leather_chestplate",
+    "buy": 16,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_helmet",
+    "buy": 60,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_chestplate",
+    "buy": 95,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_leggings",
+    "buy": 85,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "iron_boots",
+    "buy": 50,
+    "sell": null,
+    "cat": "armor"
+   },
+   {
+    "item": "coal",
+    "buy": 4,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "charcoal",
+    "buy": 4,
+    "sell": 1,
+    "cat": "ores"
+   },
+   {
+    "item": "raw_iron",
+    "buy": null,
+    "sell": 5,
+    "cat": "ores"
+   },
+   {
+    "item": "iron_ingot",
+    "buy": 15,
+    "sell": 7,
+    "cat": "ores"
+   },
+   {
+    "item": "raw_copper",
+    "buy": null,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "copper_ingot",
+    "buy": 6,
+    "sell": 3,
+    "cat": "ores"
+   },
+   {
+    "item": "raw_gold",
+    "buy": null,
+    "sell": 8,
+    "cat": "ores"
+   },
+   {
+    "item": "gold_ingot",
+    "buy": 25,
+    "sell": 12,
+    "cat": "ores"
+   },
+   {
+    "item": "redstone",
+    "buy": 5,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "lapis_lazuli",
+    "buy": 6,
+    "sell": 2,
+    "cat": "ores"
+   },
+   {
+    "item": "diamond",
+    "buy": 120,
+    "sell": 60,
+    "cat": "ores"
+   },
+   {
+    "item": "emerald",
+    "buy": 80,
+    "sell": 40,
+    "cat": "ores"
+   },
+   {
+    "item": "rotten_flesh",
+    "buy": null,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "bone",
+    "buy": null,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "string",
+    "buy": 3,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "spider_eye",
+    "buy": null,
+    "sell": 2,
+    "cat": "mob drops"
+   },
+   {
+    "item": "gunpowder",
+    "buy": 10,
+    "sell": 4,
+    "cat": "mob drops"
+   },
+   {
+    "item": "ender_pearl",
+    "buy": 40,
+    "sell": 15,
+    "cat": "mob drops"
+   },
+   {
+    "item": "leather",
+    "buy": 6,
+    "sell": 2,
+    "cat": "mob drops"
+   },
+   {
+    "item": "feather",
+    "buy": 2,
+    "sell": 1,
+    "cat": "mob drops"
+   },
+   {
+    "item": "slime_ball",
+    "buy": 12,
+    "sell": 5,
+    "cat": "mob drops"
+   }
+  ],
+  "shops": [],
+  "listings": [],
+  "auctions": [],
+  "tx": [
+   {
+    "id": 1,
+    "ts": 1795315099311,
+    "kind": "start",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 100,
+    "note": "starting balance"
+   }
+  ],
+  "deliveries": [],
+  "jobs": [],
+  "nextRotation": null,
+  "bounties": [],
+  "earnings": {
+   "ok": true,
+   "rates": {
+    "mobs": {
+     "zombie": 3,
+     "husk": 3,
+     "drowned": 3,
+     "zombie_villager": 3,
+     "skeleton": 3,
+     "stray": 3,
+     "bogged": 3,
+     "creeper": 4,
+     "spider": 2,
+     "cave_spider": 3,
+     "enderman": 6,
+     "witch": 8,
+     "slime": 1,
+     "magma_cube": 2,
+     "phantom": 5,
+     "pillager": 5,
+     "vindicator": 8,
+     "evoker": 15,
+     "ravager": 20,
+     "vex": 2,
+     "silverfish": 1,
+     "endermite": 1,
+     "guardian": 6,
+     "blaze": 6,
+     "ghast": 8,
+     "wither_skeleton": 10,
+     "hoglin": 5,
+     "zoglin": 5,
+     "piglin_brute": 10,
+     "shulker": 6,
+     "breeze": 8
+    },
+    "mobCapPerMinute": 60,
+    "milestones": [
+     {
+      "id": "diamond",
+      "label": "first diamond",
+      "reward": 25,
+      "first": 13
+     },
+     {
+      "id": "deepslate_diamond",
+      "label": "first deepslate diamond",
+      "reward": 30,
+      "first": 15
+     },
+     {
+      "id": "emerald",
+      "label": "first emerald",
+      "reward": 20,
+      "first": 10
+     },
+     {
+      "id": "ancient_debris",
+      "label": "first ancient debris",
+      "reward": 60,
+      "first": 30
+     },
+     {
+      "id": "nether",
+      "label": "first trip to the Nether",
+      "reward": 40,
+      "first": 20
+     },
+     {
+      "id": "end",
+      "label": "first trip to the End",
+      "reward": 100,
+      "first": 50
+     }
+    ],
+    "wage": 10,
+    "jobPremiumPct": 50,
+    "bounties": true
+   },
+   "nextSunrise": null,
+   "day": null,
+   "who": "Robin",
+   "totals": {
+    "mob": 0,
+    "job": 0,
+    "bounty": 0,
+    "milestone": 0,
+    "wage": 0,
+    "today": 0,
+    "all": 0
+   },
+   "milestones": [
+    {
+     "id": "diamond",
+     "label": "first diamond",
+     "reward": 25,
+     "first": 13,
+     "done": false
+    },
+    {
+     "id": "deepslate_diamond",
+     "label": "first deepslate diamond",
+     "reward": 30,
+     "first": 15,
+     "done": false
+    },
+    {
+     "id": "emerald",
+     "label": "first emerald",
+     "reward": 20,
+     "first": 10,
+     "done": false
+    },
+    {
+     "id": "ancient_debris",
+     "label": "first ancient debris",
+     "reward": 60,
+     "first": 30,
+     "done": false
+    },
+    {
+     "id": "nether",
+     "label": "first trip to the Nether",
+     "reward": 40,
+     "first": 20,
+     "done": false
+    },
+    {
+     "id": "end",
+     "label": "first trip to the End",
+     "reward": 100,
+     "first": 50,
+     "done": false
+    }
+   ],
+   "recent": []
+  }
+ },
+ "ws": [
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 1,
+   "tx": {
+    "id": 1,
+    "ts": 1795315099311,
+    "kind": "start",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 100,
+    "note": "starting balance"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 2,
+   "who": "Robin",
+   "balance": 100,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 3,
+   "tx": {
+    "id": 2,
+    "ts": 1795315099524,
+    "kind": "start",
+    "from": "Bank",
+    "to": "Ash",
+    "amount": 100,
+    "note": "starting balance"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 4,
+   "who": "Ash",
+   "balance": 100,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "jobs",
+   "rev": 5,
+   "jobs": [
+    {
+     "id": 1,
+     "item": "bread",
+     "count": 8,
+     "left": 8,
+     "pay": 3,
+     "shopSell": 2,
+     "delivered": {},
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    },
+    {
+     "id": 2,
+     "item": "string",
+     "count": 8,
+     "left": 8,
+     "pay": 2,
+     "shopSell": 1,
+     "delivered": {},
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    },
+    {
+     "id": 3,
+     "item": "gunpowder",
+     "count": 6,
+     "left": 6,
+     "pay": 6,
+     "shopSell": 4,
+     "delivered": {},
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    },
+    {
+     "id": 4,
+     "item": "copper_ingot",
+     "count": 12,
+     "left": 12,
+     "pay": 5,
+     "shopSell": 3,
+     "delivered": {},
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    }
+   ],
+   "nextRotation": 1795316249514
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 1,
+    "title": "Fence the farm",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100137,
+    "updated": 1795315100137
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 6,
+   "who": "Robin",
+   "balance": 60,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 7,
+   "tx": {
+    "id": 3,
+    "ts": 1795315100137,
+    "kind": "bounty_hold",
+    "from": "Robin",
+    "to": "Escrow",
+    "amount": 40,
+    "note": "bounty on task #1 Fence the farm"
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 1,
+    "title": "Fence the farm",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100137,
+    "updated": 1795315100137,
+    "reward": 40,
+    "rewardStatus": "open",
+    "rewardTo": null
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "bounty",
+   "rev": 8,
+   "bounty": {
+    "task": 1,
+    "title": "Fence the farm",
+    "total": 40,
+    "funders": {
+     "Robin": 40
+    },
+    "status": "open",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100137
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 9,
+   "who": "Ash",
+   "balance": 95,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 10,
+   "tx": {
+    "id": 4,
+    "ts": 1795315100144,
+    "kind": "bounty_hold",
+    "from": "Ash",
+    "to": "Escrow",
+    "amount": 5,
+    "note": "bounty on task #1 Fence the farm"
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 1,
+    "title": "Fence the farm",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100137,
+    "updated": 1795315100137,
+    "reward": 45,
+    "rewardStatus": "open",
+    "rewardTo": null
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "bounty",
+   "rev": 11,
+   "bounty": {
+    "task": 1,
+    "title": "Fence the farm",
+    "total": 45,
+    "funders": {
+     "Robin": 40,
+     "Ash": 5
+    },
+    "status": "open",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100137
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 2,
+    "title": "Bring torches",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100148,
+    "updated": 1795315100148
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 12,
+   "who": "Robin",
+   "balance": 48,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 13,
+   "tx": {
+    "id": 5,
+    "ts": 1795315100148,
+    "kind": "bounty_hold",
+    "from": "Robin",
+    "to": "Escrow",
+    "amount": 12,
+    "note": "bounty on task #2 Bring torches"
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 2,
+    "title": "Bring torches",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100148,
+    "updated": 1795315100148,
+    "reward": 12,
+    "rewardStatus": "open",
+    "rewardTo": null
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "bounty",
+   "rev": 14,
+   "bounty": {
+    "task": 2,
+    "title": "Bring torches",
+    "total": 12,
+    "funders": {
+     "Robin": 12
+    },
+    "status": "open",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100148
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 15,
+   "who": "Robin",
+   "balance": 60,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 16,
+   "tx": {
+    "id": 6,
+    "ts": 1795315100152,
+    "kind": "bounty_refund",
+    "from": "Escrow",
+    "to": "Robin",
+    "amount": 12,
+    "note": "bounty on task #2 withdrawn"
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 2,
+    "title": "Bring torches",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100148,
+    "updated": 1795315100148,
+    "reward": 0,
+    "rewardStatus": "refunded",
+    "rewardTo": null
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "bounty",
+   "rev": 17,
+   "bounty": {
+    "task": 2,
+    "title": "Bring torches",
+    "total": 0,
+    "funders": {},
+    "status": "refunded",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100148,
+    "ended": 1795315100152
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 1,
+    "title": "Fence the farm",
+    "detail": "",
+    "status": "claimed",
+    "owner": "Ash",
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100137,
+    "updated": 1795315100155,
+    "reward": 45,
+    "rewardStatus": "open",
+    "rewardTo": null
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 1,
+    "title": "Fence the farm",
+    "detail": "",
+    "status": "done",
+    "owner": "Ash",
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [
+     "Ash: fenced"
+    ],
+    "created": 1795315100137,
+    "updated": 1795315100158,
+    "reward": 45,
+    "rewardStatus": "open",
+    "rewardTo": null
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 18,
+   "who": "Ash",
+   "balance": 100,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 19,
+   "tx": {
+    "id": 7,
+    "ts": 1795315100159,
+    "kind": "bounty_refund",
+    "from": "Escrow",
+    "to": "Ash",
+    "amount": 5,
+    "note": "task #1: you can't pay yourself, your share comes back"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 20,
+   "who": "Ash",
+   "balance": 140,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 21,
+   "tx": {
+    "id": 8,
+    "ts": 1795315100159,
+    "kind": "bounty_paid",
+    "from": "Escrow",
+    "to": "Ash",
+    "amount": 40,
+    "note": "task #1 Fence the farm (from Robin)"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 22,
+   "source": "bounty",
+   "who": "Ash",
+   "amount": 40,
+   "balance": 140,
+   "text": "task #1 Fence the farm",
+   "task": 1,
+   "from": "Robin"
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 1,
+    "title": "Fence the farm",
+    "detail": "",
+    "status": "done",
+    "owner": "Ash",
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [
+     "Ash: fenced"
+    ],
+    "created": 1795315100137,
+    "updated": 1795315100158,
+    "reward": 40,
+    "rewardStatus": "paid",
+    "rewardTo": "Ash"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "bounty",
+   "rev": 23,
+   "bounty": {
+    "task": 1,
+    "title": "Fence the farm",
+    "total": 40,
+    "funders": {
+     "Robin": 40
+    },
+    "status": "paid",
+    "owner": "Ash",
+    "paidTo": "Ash",
+    "created": 1795315100137,
+    "ended": 1795315100159
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 3,
+    "title": "Mine 24 iron",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100163,
+    "updated": 1795315100163
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 24,
+   "who": "Robin",
+   "balance": 30,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 25,
+   "tx": {
+    "id": 9,
+    "ts": 1795315100163,
+    "kind": "bounty_hold",
+    "from": "Robin",
+    "to": "Escrow",
+    "amount": 30,
+    "note": "bounty on task #3 Mine 24 iron"
+   }
+  },
+  {
+   "t": "board",
+   "task": {
+    "id": 3,
+    "title": "Mine 24 iron",
+    "detail": "",
+    "status": "open",
+    "owner": null,
+    "priority": "normal",
+    "by": "Robin",
+    "notes": [],
+    "created": 1795315100163,
+    "updated": 1795315100163,
+    "reward": 30,
+    "rewardStatus": "open",
+    "rewardTo": null
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "bounty",
+   "rev": 26,
+   "bounty": {
+    "task": 3,
+    "title": "Mine 24 iron",
+    "total": 30,
+    "funders": {
+     "Robin": 30
+    },
+    "status": "open",
+    "owner": null,
+    "paidTo": null,
+    "created": 1795315100163
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 27,
+   "who": "Robin",
+   "balance": 39,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 28,
+   "tx": {
+    "id": 10,
+    "ts": 1795315100175,
+    "kind": "job_pay",
+    "from": "Server",
+    "to": "Robin",
+    "amount": 9,
+    "item": "bread",
+    "count": 3,
+    "note": "job #1"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 29,
+   "source": "job",
+   "who": "Robin",
+   "amount": 9,
+   "balance": 39,
+   "text": "3 bread for job #1",
+   "job": 1
+  },
+  {
+   "t": "econ",
+   "kind": "jobs",
+   "rev": 30,
+   "jobs": [
+    {
+     "id": 1,
+     "item": "bread",
+     "count": 8,
+     "left": 5,
+     "pay": 3,
+     "shopSell": 2,
+     "delivered": {
+      "Robin": 3
+     },
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    },
+    {
+     "id": 2,
+     "item": "string",
+     "count": 8,
+     "left": 8,
+     "pay": 2,
+     "shopSell": 1,
+     "delivered": {},
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    },
+    {
+     "id": 3,
+     "item": "gunpowder",
+     "count": 6,
+     "left": 6,
+     "pay": 6,
+     "shopSell": 4,
+     "delivered": {},
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    },
+    {
+     "id": 4,
+     "item": "copper_ingot",
+     "count": 12,
+     "left": 12,
+     "pay": 5,
+     "shopSell": 3,
+     "delivered": {},
+     "created": 1795315099556,
+     "expiresAt": 1795316249514,
+     "status": "open"
+    }
+   ],
+   "nextRotation": 1795316249514
+  },
+  {
+   "t": "econ",
+   "kind": "sale",
+   "rev": 31,
+   "text": "Robin delivered 3 bread for server job #1 and earned 9 coins",
+   "who": [
+    "Robin"
+   ]
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 32,
+   "who": "Robin",
+   "balance": 48,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 33,
+   "tx": {
+    "id": 11,
+    "ts": 1795315100227,
+    "kind": "mob_bounty",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 9,
+    "note": "2 zombie, 1 skeleton"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 34,
+   "source": "mob",
+   "who": "Robin",
+   "amount": 9,
+   "balance": 48,
+   "text": "2 zombie, 1 skeleton"
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 35,
+   "who": "Robin",
+   "balance": 73,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 36,
+   "tx": {
+    "id": 12,
+    "ts": 1795315100227,
+    "kind": "milestone",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 25,
+    "note": "first diamond"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 37,
+   "source": "milestone",
+   "who": "Robin",
+   "amount": 25,
+   "balance": 73,
+   "text": "first diamond",
+   "id": "diamond"
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 38,
+   "who": "Robin",
+   "balance": 86,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 39,
+   "tx": {
+    "id": 13,
+    "ts": 1795315100227,
+    "kind": "world_first",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 13,
+    "note": "world first: first diamond"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 40,
+   "source": "milestone",
+   "who": "Robin",
+   "amount": 13,
+   "balance": 86,
+   "text": "world first: first diamond",
+   "id": "diamond",
+   "worldFirst": true
+  },
+  {
+   "t": "econ",
+   "kind": "sale",
+   "rev": 41,
+   "text": "Robin is the first in this world to get \"first diamond\"",
+   "who": [
+    "Robin"
+   ]
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 42,
+   "who": "Ash",
+   "balance": 144,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 43,
+   "tx": {
+    "id": 14,
+    "ts": 1795315100243,
+    "kind": "mob_bounty",
+    "from": "Bank",
+    "to": "Ash",
+    "amount": 4,
+    "note": "1 creeper"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 44,
+   "source": "mob",
+   "who": "Ash",
+   "amount": 4,
+   "balance": 144,
+   "text": "1 creeper"
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 45,
+   "who": "Robin",
+   "balance": 96,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 46,
+   "tx": {
+    "id": 15,
+    "ts": 1795315100289,
+    "kind": "wage",
+    "from": "Bank",
+    "to": "Robin",
+    "amount": 10,
+    "note": "day 4"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 47,
+   "source": "wage",
+   "who": "Robin",
+   "amount": 10,
+   "balance": 96,
+   "text": "day 4",
+   "day": 4
+  },
+  {
+   "t": "econ",
+   "kind": "wallet",
+   "rev": 48,
+   "who": "Ash",
+   "balance": 154,
+   "held": 0
+  },
+  {
+   "t": "econ",
+   "kind": "tx",
+   "rev": 49,
+   "tx": {
+    "id": 16,
+    "ts": 1795315100289,
+    "kind": "wage",
+    "from": "Bank",
+    "to": "Ash",
+    "amount": 10,
+    "note": "day 4"
+   }
+  },
+  {
+   "t": "econ",
+   "kind": "earn",
+   "rev": 50,
+   "source": "wage",
+   "who": "Ash",
+   "amount": 10,
+   "balance": 154,
+   "text": "day 4",
+   "day": 4
+  },
+  {
+   "t": "econ",
+   "kind": "jobs",
+   "rev": 51,
+   "jobs": [
+    {
+     "id": 5,
+     "item": "gold_ingot",
+     "count": 4,
+     "left": 4,
+     "pay": 18,
+     "shopSell": 12,
+     "delivered": {},
+     "created": 1795315100290,
+     "expiresAt": 1795316250244,
+     "status": "open"
+    },
+    {
+     "id": 6,
+     "item": "rotten_flesh",
+     "count": 16,
+     "left": 16,
+     "pay": 2,
+     "shopSell": 1,
+     "delivered": {},
+     "created": 1795315100290,
+     "expiresAt": 1795316250244,
+     "status": "open"
+    },
+    {
+     "id": 7,
+     "item": "redstone",
+     "count": 16,
+     "left": 16,
+     "pay": 3,
+     "shopSell": 2,
+     "delivered": {},
+     "created": 1795315100290,
+     "expiresAt": 1795316250244,
+     "status": "open"
+    }
+   ],
+   "nextRotation": 1795316250244
+  }
+ ],
+ "off": {
+  "status": 404,
+  "json": {
+   "ok": false,
+   "error": "the economy is turned off for this game (Hivecraft.exe setting)"
+  }
+ }
+}

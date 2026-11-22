@@ -1,0 +1,18 @@
+{
+  "model": "claude-sonnet-5-5",
+  "goal": "Survive and thrive together: set up a shared base with a chest and beds, get everyone iron tools and armour, then find diamonds.",
+  "maxResumes": 3,
+  "staggerSeconds": 6,
+  "agents": [
+    { "name": "Ash",   "role": "Lead",     "prompt": "lead.md" },
+    { "name": "Flint", "role": "Miner",    "prompt": "miner.md" },
+    { "name": "Wren",  "role": "Gatherer", "prompt": "gatherer.md" },
+    { "name": "Moss",  "role": "Builder",  "prompt": "builder.md" },
+    { "name": "Lark",  "role": "Scout",    "prompt": "scout.md" }
+  ],
+  "overflow": [
+    { "name": "Reed",  "role": "Miner",    "prompt": "miner.md" },
+    { "name": "Fern",  "role": "Gatherer", "prompt": "gatherer.md" },
+    { "name": "Slate", "role": "Miner",    "prompt": "miner.md" }
+  ]
+}

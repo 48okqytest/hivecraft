@@ -1,0 +1,306 @@
+<Window x:Class="Hivecraft.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:shell="clr-namespace:System.Windows.Shell;assembly=PresentationFramework"
+        Title="Hivecraft" Width="1120" Height="780" MinWidth="980" MinHeight="660"
+        WindowStartupLocation="CenterScreen" Background="{StaticResource Bg}"
+        FontFamily="{StaticResource Sans}" Foreground="{StaticResource Text}"
+        WindowStyle="None" ResizeMode="CanResize" Icon="hive.ico" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True">
+  <shell:WindowChrome.WindowChrome>
+    <shell:WindowChrome CaptionHeight="46" ResizeBorderThickness="6" GlassFrameThickness="0" CornerRadius="0" UseAeroCaptionButtons="False"/>
+  </shell:WindowChrome.WindowChrome>
+
+  <Window.Resources>
+    <Style x:Key="Bar" TargetType="ProgressBar">
+      <Setter Property="Height" Value="6"/>
+      <Setter Property="Maximum" Value="20"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="ProgressBar">
+            <Grid>
+              <Border Background="#1A2230" CornerRadius="3"/>
+              <Border x:Name="PART_Track"/>
+              <Border x:Name="PART_Indicator" HorizontalAlignment="Left" Background="{TemplateBinding Foreground}" CornerRadius="3"/>
+            </Grid>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="Card" TargetType="Border">
+      <Setter Property="Background" Value="{StaticResource Panel}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource Line}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="12"/>
+      <Setter Property="Padding" Value="16"/>
+    </Style>
+    <Style x:Key="Chip" TargetType="Border">
+      <Setter Property="Background" Value="{StaticResource Panel}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource Line2}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="CornerRadius" Value="15"/>
+      <Setter Property="Padding" Value="11,5,13,5"/>
+      <Setter Property="Margin" Value="0,0,8,0"/>
+    </Style>
+  </Window.Resources>
+
+  <Border x:Name="Frame" BorderBrush="{StaticResource Line}" BorderThickness="1">
+    <Grid>
+      <Grid.RowDefinitions>
+        <RowDefinition Height="46"/>
+        <RowDefinition Height="*"/>
+      </Grid.RowDefinitions>
+
+      <!-- title bar -->
+      <Border Grid.Row="0" Background="#0C1017" BorderBrush="{StaticResource Line}" BorderThickness="0,0,0,1">
+        <Grid>
+          <StackPanel Orientation="Horizontal" Margin="14,0,0,0" VerticalAlignment="Center">
+            <Image Source="hive.png" Width="26" Height="26" RenderOptions.BitmapScalingMode="HighQuality"/>
+            <TextBlock Text="HIVECRAFT" Margin="11,0,0,0" FontSize="14" FontWeight="Bold" Foreground="{StaticResource Amber}" VerticalAlignment="Center">
+              <TextBlock.Effect><DropShadowEffect Color="#FFB547" Opacity="0.35" BlurRadius="10" ShadowDepth="0"/></TextBlock.Effect>
+            </TextBlock>
+            <TextBlock Text="AGENT TEAM LAUNCHER" Margin="14,1,0,0" FontSize="10.5" Foreground="{StaticResource Faint}" VerticalAlignment="Center"/>
+          </StackPanel>
+          <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" shell:WindowChrome.IsHitTestVisibleInChrome="True">
+            <Button x:Name="btnMin" Style="{StaticResource Caption}" Click="OnMinimize"><Path Data="M0,0 L10,0" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" StrokeThickness="1.2"/></Button>
+            <Button x:Name="btnClose" Style="{StaticResource CaptionClose}" Click="OnCloseClick"><Path Data="M0,0 L10,10 M10,0 L0,10" Stroke="{Binding Foreground, RelativeSource={RelativeSource AncestorType=Button}}" StrokeThickness="1.2"/></Button>
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <!-- body -->
+      <Grid Grid.Row="1" Margin="16">
+        <Grid.ColumnDefinitions>
+          <ColumnDefinition Width="340"/>
+          <ColumnDefinition Width="14"/>
+          <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- ================= LEFT: setup ================= -->
+        <Border Grid.Column="0" Style="{StaticResource Card}">
+          <Grid>
+            <Grid.RowDefinitions>
+              <RowDefinition Height="*"/>
+              <RowDefinition Height="Auto"/>
+            </Grid.RowDefinitions>
+            <ScrollViewer VerticalScrollBarVisibility="Auto" Margin="0,0,-10,0" Padding="0,0,10,0">
+              <StackPanel x:Name="setupPanel">
+                <Grid>
+                  <TextBlock Text="AGENTS" Style="{StaticResource Label}"/>
+                  <TextBlock x:Name="txtAgentCount" HorizontalAlignment="Right" Foreground="{StaticResource Faint}" FontSize="11"/>
+                </Grid>
+                <ItemsControl x:Name="agentList">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Grid Margin="0,0,0,10">
+                        <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                        <TextBox Style="{StaticResource Input}" Text="{Binding Name, UpdateSourceTrigger=PropertyChanged}" MaxLength="16" TextChanged="OnAgentNameChanged" FontWeight="SemiBold"/>
+                        <Button Grid.Column="1" Style="{StaticResource Icon}" Margin="4,0,0,0" Tag="{Binding}" Click="OnRemoveAgent" ToolTip="Remove agent" Content="✕"/>
+                        <Grid Grid.Row="1" Margin="0,4,0,0">
+                          <TextBox Style="{StaticResource Input}" FontSize="11.5" MaxLength="300" Foreground="#AEB8C8" Text="{Binding Persona, UpdateSourceTrigger=PropertyChanged}" ToolTip="Personality (optional), e.g. grumpy perfectionist, loves building towers"/>
+                          <TextBlock Text="Personality (optional), e.g. grumpy perfectionist, loves building towers" IsHitTestVisible="False"
+                                     Foreground="{StaticResource Faint}" FontSize="11.5" Margin="11,0,8,0" VerticalAlignment="Center" TextTrimming="CharacterEllipsis">
+                            <TextBlock.Style>
+                              <Style TargetType="TextBlock">
+                                <Setter Property="Visibility" Value="Collapsed"/>
+                                <Style.Triggers><DataTrigger Binding="{Binding Persona}" Value=""><Setter Property="Visibility" Value="Visible"/></DataTrigger></Style.Triggers>
+                              </Style>
+                            </TextBlock.Style>
+                          </TextBlock>
+                        </Grid>
+                      </Grid>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <Button x:Name="btnAddAgent" Style="{StaticResource Ghost}" Content="+  Add agent" Click="OnAddAgent" HorizontalAlignment="Left" Padding="14,7"/>
+                <TextBlock x:Name="txtAgentError" Foreground="{StaticResource Red}" FontSize="11.5" TextWrapping="Wrap" Margin="0,8,0,0" Visibility="Collapsed"/>
+
+                <TextBlock Text="AI PROVIDER" Style="{StaticResource Label}" Margin="0,20,0,7"/>
+                <Border Background="{StaticResource Panel2}" BorderBrush="{StaticResource Line2}" BorderThickness="1" CornerRadius="8" Padding="12,10">
+                  <StackPanel>
+                    <Grid>
+                      <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                      <TextBlock x:Name="txtProvName" FontWeight="SemiBold" FontSize="13" VerticalAlignment="Center" Text="Claude subscription"/>
+                      <StackPanel Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right" VerticalAlignment="Center" Margin="8,0,0,0">
+                        <Ellipse x:Name="dotProv" Width="7" Height="7" Fill="{StaticResource Faint}" VerticalAlignment="Center" Margin="0,0,6,0"/>
+                        <TextBlock x:Name="txtProvState" FontSize="11.5" Foreground="{StaticResource Dim}" TextTrimming="CharacterEllipsis" MaxWidth="230" VerticalAlignment="Center"/>
+                      </StackPanel>
+                    </Grid>
+                    <ComboBox x:Name="cmbModel" Style="{StaticResource Combo}" Height="36" Margin="0,8,0,0" SelectionChanged="OnModelChanged" ToolTip="Model the agents use"/>
+                    <TextBlock x:Name="txtModelFixed" FontFamily="{StaticResource Mono}" FontSize="12" Foreground="#AEB8C8" Margin="2,8,0,0" TextTrimming="CharacterEllipsis" Visibility="Collapsed"/>
+                    <TextBlock x:Name="txtProvNote" FontSize="11.5" Foreground="{StaticResource Amber}" TextWrapping="Wrap" Margin="2,6,0,0" Visibility="Collapsed"/>
+                    <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                      <Button Style="{StaticResource Ghost}" Content="Change…" Click="OnChangeProvider" Padding="14,6" Margin="0,0,6,0" ToolTip="Claude subscription, Anthropic API key, OpenRouter or another API"/>
+                      <Button x:Name="btnTestProv" Style="{StaticResource Ghost}" Content="Test connection" Click="OnTestProvider" Padding="14,6"
+                              ToolTip="Sends one tiny message through Claude Code. On paid providers this costs a fraction of a cent (capped at $0.05)."/>
+                    </StackPanel>
+                    <TextBlock x:Name="txtProvResult" FontSize="11.5" TextWrapping="Wrap" Margin="2,8,0,0" Visibility="Collapsed"/>
+                  </StackPanel>
+                </Border>
+
+                <TextBlock Text="WORLD" Style="{StaticResource Label}" Margin="0,20,0,5"/>
+                <UniformGrid Columns="2" Margin="-2,0">
+                  <RadioButton x:Name="rbNew" Style="{StaticResource Seg}" Content="New world" GroupName="world" Checked="OnWorldChanged"/>
+                  <RadioButton x:Name="rbContinue" Style="{StaticResource Seg}" Content="Continue last world" GroupName="world" Checked="OnWorldChanged"/>
+                </UniformGrid>
+                <Grid Margin="0,4,0,0">
+                  <TextBox x:Name="txtSeed" Style="{StaticResource Input}" TextChanged="OnSeedChanged"/>
+                  <TextBlock x:Name="seedHint" Text="Seed (blank = random)" IsHitTestVisible="False" Foreground="{StaticResource Faint}" FontSize="13" Margin="11,0,0,0" VerticalAlignment="Center"/>
+                </Grid>
+
+                <TextBlock Text="YOUR MODE WHEN YOU JOIN" Style="{StaticResource Label}" Margin="0,20,0,5"/>
+                <UniformGrid Columns="3" Margin="-2,0">
+                  <RadioButton x:Name="rbSpectator" Style="{StaticResource Seg}" Content="Spectator" GroupName="gm" Tag="spectator"/>
+                  <RadioButton x:Name="rbSurvival" Style="{StaticResource Seg}" Content="Survival" GroupName="gm" Tag="survival"/>
+                  <RadioButton x:Name="rbCreative" Style="{StaticResource Seg}" Content="Creative" GroupName="gm" Tag="creative"/>
+                </UniformGrid>
+                <TextBlock Text="ECONOMY (COINS, SHOPS, AUCTIONS)" Style="{StaticResource Label}" Margin="0,20,0,5" ToolTip="On: agents earn and spend coins, run shops and auctions. Off: no economy at all."/>
+                <UniformGrid Columns="2" Margin="-2,0">
+                  <RadioButton x:Name="rbEconOn" Style="{StaticResource Seg}" Content="On" GroupName="econ" ToolTip="Coins, shops and auctions are active"/>
+                  <RadioButton x:Name="rbEconOff" Style="{StaticResource Seg}" Content="Off" GroupName="econ" ToolTip="No coins, shops or auctions"/>
+                </UniformGrid>
+
+                <TextBlock Text="OVERLAY MOD (IN-GAME HUD)" Style="{StaticResource Label}" Margin="0,20,0,5" ToolTip="On: installs Fabric and the Hivecraft Overlay mod. Off: plain Minecraft."/>
+                <UniformGrid Columns="2" Margin="-2,0">
+                  <RadioButton x:Name="rbModOn" Style="{StaticResource Seg}" Content="On" GroupName="mod" ToolTip="Install Fabric + the Hivecraft Overlay mod"/>
+                  <RadioButton x:Name="rbModOff" Style="{StaticResource Seg}" Content="Off" GroupName="mod" ToolTip="Plain Minecraft, no mod"/>
+                </UniformGrid>
+                <TextBlock Text="Agents have no task until you type one in the game chat." Foreground="{StaticResource Faint}" FontSize="11.5" TextWrapping="Wrap" Margin="0,16,0,0"/>
+              </StackPanel>
+            </ScrollViewer>
+
+            <StackPanel Grid.Row="1" Margin="0,14,0,0">
+              <Button x:Name="btnStart" Style="{StaticResource Primary}" Height="56" Content="START" Click="OnStartStop"/>
+              <TextBlock x:Name="txtStatus" Text="Ready." Foreground="{StaticResource Dim}" FontSize="12" Margin="2,10,0,0" TextWrapping="Wrap" MinHeight="32"/>
+            </StackPanel>
+          </Grid>
+        </Border>
+
+        <!-- ================= RIGHT: live ================= -->
+        <Grid Grid.Column="2">
+          <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+          </Grid.RowDefinitions>
+
+          <!-- chips + buttons -->
+          <Grid Grid.Row="0" Margin="0,0,0,12">
+            <StackPanel Orientation="Horizontal">
+              <Border Style="{StaticResource Chip}"><StackPanel Orientation="Horizontal">
+                <Ellipse x:Name="dotServer" Width="9" Height="9" Fill="{StaticResource Faint}" Margin="0,1,8,0"/>
+                <TextBlock Text="Server" Foreground="{StaticResource Dim}" Margin="0,0,7,0"/>
+                <TextBlock x:Name="valServer" Text="off" FontWeight="SemiBold"/>
+              </StackPanel></Border>
+              <Border Style="{StaticResource Chip}"><StackPanel Orientation="Horizontal">
+                <Ellipse x:Name="dotBridge" Width="9" Height="9" Fill="{StaticResource Faint}" Margin="0,1,8,0"/>
+                <TextBlock Text="Bridge" Foreground="{StaticResource Dim}" Margin="0,0,7,0"/>
+                <TextBlock x:Name="valBridge" Text="off" FontWeight="SemiBold"/>
+              </StackPanel></Border>
+              <Border Style="{StaticResource Chip}"><StackPanel Orientation="Horizontal">
+                <Ellipse x:Name="dotAgents" Width="9" Height="9" Fill="{StaticResource Faint}" Margin="0,1,8,0"/>
+                <TextBlock Text="Agents" Foreground="{StaticResource Dim}" Margin="0,0,7,0"/>
+                <TextBlock x:Name="valAgents" Text="0 online" FontWeight="SemiBold"/>
+              </StackPanel></Border>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+              <Button Style="{StaticResource Ghost}" Content="Open dashboard" Click="OnOpenDashboard" Margin="0,0,8,0"/>
+              <Button Style="{StaticResource Ghost}" Content="Open Minecraft" Click="OnOpenMinecraft"/>
+            </StackPanel>
+          </Grid>
+
+          <!-- hint / error banner -->
+          <Border x:Name="banner" Grid.Row="1" Visibility="Collapsed" CornerRadius="10" BorderThickness="1" Padding="14,10" Margin="0,0,0,12" Background="{StaticResource AmberDim}" BorderBrush="#6B4A14">
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+              <TextBlock x:Name="bannerText" TextWrapping="Wrap" VerticalAlignment="Center" Foreground="{StaticResource AmberHi}"/>
+              <Button Grid.Column="1" Style="{StaticResource Icon}" Width="24" Content="✕" Click="OnDismissBanner" VerticalAlignment="Top" Margin="8,-4,-6,0"/>
+            </Grid>
+          </Border>
+
+          <!-- live agents -->
+          <Border Grid.Row="2" Style="{StaticResource Card}" Padding="16,14,16,10" Margin="0,0,0,12">
+            <StackPanel>
+              <TextBlock Text="LIVE AGENTS" Style="{StaticResource Label}"/>
+              <TextBlock x:Name="txtNoBots" Text="Nobody is online yet. Press START." Foreground="{StaticResource Faint}" Margin="0,2,0,6"/>
+              <ItemsControl x:Name="botList" MaxHeight="290">
+                <ItemsControl.Template>
+                  <ControlTemplate TargetType="ItemsControl"><ScrollViewer VerticalScrollBarVisibility="Auto" Focusable="False"><ItemsPresenter/></ScrollViewer></ControlTemplate>
+                </ItemsControl.Template>
+                <ItemsControl.ItemTemplate>
+                  <DataTemplate>
+                    <Grid Height="34">
+                      <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="22"/>
+                        <ColumnDefinition Width="104"/>
+                        <ColumnDefinition Width="96"/>
+                        <ColumnDefinition Width="96"/>
+                        <ColumnDefinition Width="*"/>
+                      </Grid.ColumnDefinitions>
+                      <Ellipse Width="9" Height="9" Fill="{Binding DotBrush}" HorizontalAlignment="Left" Margin="2,0,0,0"/>
+                      <TextBlock Grid.Column="1" Text="{Binding Name}" FontWeight="SemiBold" FontSize="13.5" VerticalAlignment="Center"/>
+                      <StackPanel Grid.Column="2" VerticalAlignment="Center" Margin="0,0,14,0">
+                        <TextBlock Text="{Binding HpText}" FontFamily="{StaticResource Mono}" FontSize="10.5" Foreground="{StaticResource Dim}" Margin="0,0,0,2"/>
+                        <ProgressBar Style="{StaticResource Bar}" Value="{Binding Hp, Mode=OneWay}" Foreground="{Binding HpBrush}"/>
+                      </StackPanel>
+                      <StackPanel Grid.Column="3" VerticalAlignment="Center" Margin="0,0,14,0">
+                        <TextBlock Text="{Binding FoodText}" FontFamily="{StaticResource Mono}" FontSize="10.5" Foreground="{StaticResource Dim}" Margin="0,0,0,2"/>
+                        <ProgressBar Style="{StaticResource Bar}" Value="{Binding Food, Mode=OneWay}" Foreground="{StaticResource Amber}"/>
+                      </StackPanel>
+                      <TextBlock Grid.Column="4" Text="{Binding Action}" FontFamily="{StaticResource Mono}" FontSize="12" Foreground="{Binding ActionBrush}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis" ToolTip="{Binding Thought}"/>
+                    </Grid>
+                  </DataTemplate>
+                </ItemsControl.ItemTemplate>
+              </ItemsControl>
+            </StackPanel>
+          </Border>
+
+          <!-- team chat -->
+          <Border Grid.Row="3" Style="{StaticResource Card}" Padding="16,14,16,14">
+            <Grid>
+              <Grid.RowDefinitions><RowDefinition Height="Auto"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+              <TextBlock Text="TEAM CHAT" Style="{StaticResource Label}"/>
+              <ScrollViewer x:Name="chatScroll" Grid.Row="1" VerticalScrollBarVisibility="Auto" Margin="0,0,-8,0" Padding="0,0,8,0">
+                <ItemsControl x:Name="chatList">
+                  <ItemsControl.ItemTemplate>
+                    <DataTemplate>
+                      <Grid Margin="0,0,0,7" ToolTip="{Binding Time}">
+                        <Grid.ColumnDefinitions><ColumnDefinition Width="132"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+                        <TextBlock>
+                          <Run Text="{Binding From, Mode=OneWay}" FontWeight="SemiBold" Foreground="{Binding FromBrush, Mode=OneWay}"/><Run Text="{Binding ToSuffix, Mode=OneWay}" Foreground="{StaticResource Faint}" FontSize="11.5"/>
+                        </TextBlock>
+                        <TextBlock Grid.Column="1" Text="{Binding Text}" TextWrapping="Wrap" Foreground="{StaticResource Text}" LineHeight="18"/>
+                      </Grid>
+                    </DataTemplate>
+                  </ItemsControl.ItemTemplate>
+                </ItemsControl>
+              </ScrollViewer>
+              <Grid Grid.Row="2" Margin="0,10,0,0">
+                <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+                <Grid>
+                  <TextBox x:Name="txtSend" Style="{StaticResource Input}" KeyDown="OnSendKey" TextChanged="OnSendTextChanged"/>
+                  <TextBlock x:Name="sendHint" Text="Message the team…" IsHitTestVisible="False" Foreground="{StaticResource Faint}" Margin="11,0,0,0" VerticalAlignment="Center"/>
+                </Grid>
+                <Button Grid.Column="1" Style="{StaticResource Ghost}" Content="Send" Margin="8,0,0,0" Padding="18,7" Click="OnSend"/>
+              </Grid>
+            </Grid>
+          </Border>
+
+          <!-- log -->
+          <Border Grid.Row="4" Style="{StaticResource Card}" Padding="16,10,16,10" Margin="0,12,0,0">
+            <StackPanel>
+              <Button x:Name="btnLog" Style="{StaticResource Icon}" Width="Auto" HorizontalAlignment="Left" Click="OnToggleLog" Padding="0">
+                <TextBlock x:Name="logHeader" Text="▸  LOG" FontSize="10" FontWeight="Bold" Foreground="{StaticResource Dim}"/>
+              </Button>
+              <TextBox x:Name="txtLog" Visibility="Collapsed" Height="170" Margin="0,8,0,0" IsReadOnly="True" Background="#0B0E14" BorderBrush="{StaticResource Line}"
+                       Foreground="#9AA6B8" FontFamily="{StaticResource Mono}" FontSize="11.5" BorderThickness="1" Padding="8,6"
+                       VerticalScrollBarVisibility="Auto" HorizontalScrollBarVisibility="Auto" TextWrapping="NoWrap" CaretBrush="Transparent" SelectionBrush="#66FFB547"/>
+            </StackPanel>
+          </Border>
+        </Grid>
+      </Grid>
+    </Grid>
+  </Border>
+</Window>

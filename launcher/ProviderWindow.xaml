@@ -1,0 +1,164 @@
+<Window x:Class="Hivecraft.ProviderWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="AI provider — Hivecraft" Width="640" Height="720" MinHeight="480"
+        WindowStartupLocation="CenterOwner" Background="{StaticResource Bg}" ShowInTaskbar="False"
+        FontFamily="{StaticResource Sans}" Foreground="{StaticResource Text}"
+        WindowStyle="None" ResizeMode="CanResizeWithGrip" TextOptions.TextFormattingMode="Ideal" UseLayoutRounding="True">
+  <Window.Resources>
+    <Style x:Key="Secret" TargetType="PasswordBox">
+      <Setter Property="Foreground" Value="{StaticResource Text}"/>
+      <Setter Property="CaretBrush" Value="{StaticResource Amber}"/>
+      <Setter Property="SelectionBrush" Value="#66FFB547"/>
+      <Setter Property="Background" Value="{StaticResource Panel2}"/>
+      <Setter Property="BorderBrush" Value="{StaticResource Line2}"/>
+      <Setter Property="BorderThickness" Value="1"/>
+      <Setter Property="Padding" Value="10,7"/>
+      <Setter Property="FontSize" Value="13"/>
+      <Setter Property="VerticalContentAlignment" Value="Center"/>
+      <Setter Property="Template">
+        <Setter.Value>
+          <ControlTemplate TargetType="PasswordBox">
+            <Border x:Name="bd" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}"
+                    BorderThickness="{TemplateBinding BorderThickness}" CornerRadius="8" SnapsToDevicePixels="True">
+              <ScrollViewer x:Name="PART_ContentHost" VerticalAlignment="Center"/>
+            </Border>
+            <ControlTemplate.Triggers>
+              <Trigger Property="IsMouseOver" Value="True"><Setter TargetName="bd" Property="BorderBrush" Value="#3A4659"/></Trigger>
+              <Trigger Property="IsKeyboardFocused" Value="True"><Setter TargetName="bd" Property="BorderBrush" Value="{StaticResource Amber}"/></Trigger>
+            </ControlTemplate.Triggers>
+          </ControlTemplate>
+        </Setter.Value>
+      </Setter>
+    </Style>
+    <Style x:Key="Small" TargetType="TextBlock">
+      <Setter Property="FontSize" Value="11.5"/>
+      <Setter Property="Foreground" Value="{StaticResource Dim}"/>
+      <Setter Property="TextWrapping" Value="Wrap"/>
+    </Style>
+    <Style x:Key="Link" TargetType="Button" BasedOn="{StaticResource Ghost}">
+      <Setter Property="Padding" Value="10,5"/>
+      <Setter Property="Margin" Value="0,0,6,0"/>
+      <Setter Property="FontSize" Value="11.5"/>
+      <Setter Property="Foreground" Value="{StaticResource Cyan}"/>
+    </Style>
+  </Window.Resources>
+
+  <Border BorderBrush="{StaticResource Line2}" BorderThickness="1">
+    <Grid>
+      <Grid.RowDefinitions><RowDefinition Height="46"/><RowDefinition Height="*"/><RowDefinition Height="Auto"/></Grid.RowDefinitions>
+
+      <!-- title bar -->
+      <Grid Background="{StaticResource Panel}" MouseLeftButtonDown="OnDrag">
+        <StackPanel Orientation="Horizontal" VerticalAlignment="Center" Margin="18,0,0,0">
+          <TextBlock Text="AI PROVIDER" Style="{StaticResource Label}" Margin="0" VerticalAlignment="Center"/>
+          <TextBlock Text="  ·  who runs your agents" Foreground="{StaticResource Dim}" FontSize="12" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Button Style="{StaticResource CaptionClose}" HorizontalAlignment="Right" Content="✕" Click="OnCancel" ToolTip="Close"/>
+      </Grid>
+
+      <ScrollViewer x:Name="scroller" Grid.Row="1" VerticalScrollBarVisibility="Auto" Padding="22,16,22,8">
+        <StackPanel>
+          <UniformGrid x:Name="kindGrid" Columns="2" Margin="-2,0"/>
+          <Button x:Name="btnMore" Style="{StaticResource Link}" HorizontalAlignment="Left" Margin="0,6,0,0" Content="More: Amazon Bedrock, Google Vertex AI ▾" Click="OnMore"/>
+          <UniformGrid x:Name="kindGridAdv" Columns="2" Margin="-2,4,-2,0" Visibility="Collapsed"/>
+
+          <TextBlock x:Name="txtHelp" Style="{StaticResource Small}" Margin="0,14,0,0" FontSize="12.5" Foreground="#AEB8C8"/>
+          <WrapPanel x:Name="pnlLinks" Margin="0,8,0,0"/>
+
+          <!-- Claude Code itself (every provider runs through it) -->
+          <TextBlock Text="CLAUDE CODE (RUNS THE AGENTS)" Style="{StaticResource Label}" Margin="0,20,0,6"/>
+          <Grid>
+            <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+            <TextBlock x:Name="txtClaude" Style="{StaticResource Small}" VerticalAlignment="Center" Text="Looking for Claude Code…"/>
+            <Button x:Name="btnInstall" Grid.Column="1" Style="{StaticResource Ghost}" Content="Install Claude Code" Click="OnInstall" Visibility="Collapsed" Margin="8,0,0,0"
+                    ToolTip="Runs the official installer from claude.ai in a PowerShell window"/>
+          </Grid>
+
+          <!-- Claude subscription sign-in -->
+          <StackPanel x:Name="pnlLogin">
+            <TextBlock Text="SIGN-IN" Style="{StaticResource Label}" Margin="0,18,0,6"/>
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+              <TextBlock x:Name="txtLogin" Style="{StaticResource Small}" VerticalAlignment="Center" Text="…"/>
+              <Button x:Name="btnLogin" Grid.Column="1" Style="{StaticResource Ghost}" Content="Sign in" Click="OnLogin" Margin="8,0,0,0" ToolTip="Opens Claude Code's sign-in (a browser window)"/>
+              <Button x:Name="btnLoginRefresh" Grid.Column="2" Style="{StaticResource Ghost}" Content="Refresh" Click="OnLoginRefresh" Margin="6,0,0,0"/>
+            </Grid>
+          </StackPanel>
+
+          <!-- API key -->
+          <StackPanel x:Name="pnlKey">
+            <TextBlock x:Name="lblKey" Text="API KEY" Style="{StaticResource Label}" Margin="0,18,0,6"/>
+            <Grid>
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+              <PasswordBox x:Name="pwdKey" Style="{StaticResource Secret}" Height="36" PasswordChanged="OnKeyChanged"/>
+              <Button x:Name="btnCheckKey" Grid.Column="1" Style="{StaticResource Ghost}" Content="Check key" Click="OnCheckKey" Margin="8,0,0,0" ToolTip="Free check with OpenRouter (no tokens used)"/>
+            </Grid>
+            <TextBlock x:Name="txtKeyNote" Style="{StaticResource Small}" Margin="2,5,0,0"/>
+          </StackPanel>
+
+          <!-- custom endpoint -->
+          <StackPanel x:Name="pnlBase">
+            <TextBlock Text="BASE URL" Style="{StaticResource Label}" Margin="0,18,0,6"/>
+            <TextBox x:Name="txtBase" Style="{StaticResource Input}" Height="36" TextChanged="OnFieldChanged"/>
+            <TextBlock Style="{StaticResource Small}" Margin="2,5,0,0" Text="The service's Anthropic-compatible address, e.g. https://api.deepseek.com/anthropic — see its “Claude Code” guide."/>
+            <TextBlock Text="KEY IS SENT AS" Style="{StaticResource Label}" Margin="0,14,0,5"/>
+            <UniformGrid Columns="2" Margin="-2,0">
+              <RadioButton x:Name="rbBearer" Style="{StaticResource Seg}" GroupName="auth" Content="Authorization: Bearer (most services)" Checked="OnFieldChanged"/>
+              <RadioButton x:Name="rbXApiKey" Style="{StaticResource Seg}" GroupName="auth" Content="x-api-key header" Checked="OnFieldChanged"/>
+            </UniformGrid>
+          </StackPanel>
+
+          <!-- cloud providers -->
+          <StackPanel x:Name="pnlCloud">
+            <Grid Margin="0,18,0,0">
+              <Grid.ColumnDefinitions><ColumnDefinition Width="*"/><ColumnDefinition Width="12"/><ColumnDefinition Width="*"/></Grid.ColumnDefinitions>
+              <StackPanel>
+                <TextBlock Text="REGION" Style="{StaticResource Label}" Margin="0,0,0,6"/>
+                <TextBox x:Name="txtRegion" Style="{StaticResource Input}" Height="36" TextChanged="OnFieldChanged"/>
+              </StackPanel>
+              <StackPanel x:Name="pnlProject" Grid.Column="2">
+                <TextBlock Text="PROJECT ID" Style="{StaticResource Label}" Margin="0,0,0,6"/>
+                <TextBox x:Name="txtProject" Style="{StaticResource Input}" Height="36" TextChanged="OnFieldChanged"/>
+              </StackPanel>
+              <StackPanel x:Name="pnlProfile" Grid.Column="2">
+                <TextBlock Text="AWS PROFILE (OPTIONAL)" Style="{StaticResource Label}" Margin="0,0,0,6"/>
+                <TextBox x:Name="txtProfile" Style="{StaticResource Input}" Height="36" TextChanged="OnFieldChanged"/>
+              </StackPanel>
+            </Grid>
+          </StackPanel>
+
+          <!-- model -->
+          <TextBlock Text="MODEL" Style="{StaticResource Label}" Margin="0,18,0,6"/>
+          <Grid x:Name="pnlFilter" Margin="0,0,0,6">
+            <TextBox x:Name="txtFilter" Style="{StaticResource Input}" Height="34" TextChanged="OnFilterChanged"/>
+            <TextBlock x:Name="filterHint" Text="Search models (e.g. claude, deepseek, gpt)…" IsHitTestVisible="False" Foreground="{StaticResource Faint}" FontSize="13" Margin="11,0,0,0" VerticalAlignment="Center"/>
+          </Grid>
+          <ComboBox x:Name="cmbModels" Style="{StaticResource Combo}" Height="38" MaxDropDownHeight="360" SelectionChanged="OnModelPicked"/>
+          <TextBlock x:Name="lblModelId" Style="{StaticResource Small}" Margin="2,8,0,4" Text="Model id"/>
+          <TextBox x:Name="txtModel" Style="{StaticResource Input}" Height="36" TextChanged="OnModelTyped" FontFamily="{StaticResource Mono}" FontSize="12.5"/>
+          <TextBlock x:Name="txtModelNote" Style="{StaticResource Small}" Margin="2,5,0,0"/>
+
+          <StackPanel x:Name="pnlSmall">
+            <TextBlock Text="SMALL MODEL FOR BACKGROUND TASKS (OPTIONAL)" Style="{StaticResource Label}" Margin="0,16,0,6"/>
+            <TextBox x:Name="txtSmall" Style="{StaticResource Input}" Height="34" FontFamily="{StaticResource Mono}" FontSize="12.5" TextChanged="OnFieldChanged"/>
+            <TextBlock Style="{StaticResource Small}" Margin="2,5,0,0" Text="Used by Claude Code for quick housekeeping calls. Blank = the main model (or the provider's default)."/>
+          </StackPanel>
+
+          <TextBlock x:Name="txtResult" Margin="0,18,0,6" FontSize="12.5" TextWrapping="Wrap" Visibility="Collapsed"/>
+        </StackPanel>
+      </ScrollViewer>
+
+      <!-- footer -->
+      <Border Grid.Row="2" Background="{StaticResource Panel}" BorderBrush="{StaticResource Line}" BorderThickness="0,1,0,0" Padding="22,12">
+        <Grid>
+          <Grid.ColumnDefinitions><ColumnDefinition Width="Auto"/><ColumnDefinition Width="*"/><ColumnDefinition Width="Auto"/><ColumnDefinition Width="Auto"/></Grid.ColumnDefinitions>
+          <Button x:Name="btnTest" Style="{StaticResource Ghost}" Content="Test connection" Click="OnTest" Padding="14,8"
+                  ToolTip="Sends one tiny message (“reply OK”) through Claude Code with these settings. On paid providers this costs a fraction of a cent (capped at $0.05)."/>
+          <Button Grid.Column="2" Style="{StaticResource Ghost}" Content="Cancel" Click="OnCancel" Padding="16,8" Margin="0,0,8,0"/>
+          <Button x:Name="btnSave" Grid.Column="3" Style="{StaticResource Primary}" Content="Save" Click="OnSave" Width="110" Height="36" FontSize="13"/>
+        </Grid>
+      </Border>
+    </Grid>
+  </Border>
+</Window>

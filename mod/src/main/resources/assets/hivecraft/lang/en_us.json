@@ -1,0 +1,16 @@
+{
+  "key.categories.hivecraft": "Hivecraft",
+  "key.hivecraft.terminal": "Open terminal",
+  "key.hivecraft.control": "Open control screen",
+  "key.hivecraft.toggle_hud": "Toggle HUD",
+  "key.hivecraft.cycle_focus": "Focus next bot",
+  "key.hivecraft.spectate": "Spectate focused bot",
+  "key.hivecraft.economy": "Open economy (wallet, shop, market, auctions)",
+  "key.hivecraft.toggle_world": "Toggle world overlay",
+  "key.hivecraft.cycle_ledger_bot": "Block filter: next bot",
+  "key.hivecraft.toggle_labels": "Toggle bot labels",
+  "key.hivecraft.toggle_trails": "Toggle trails & paths",
+  "key.hivecraft.toggle_ledger": "Toggle block attribution",
+  "key.hivecraft.toggle_ghosts": "Toggle ghost builds",
+  "key.hivecraft.toggle_xray_labels": "Labels through walls"
+}
