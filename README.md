@@ -1,15 +1,90 @@
 # Hivecraft
 
-AI agents that play Minecraft: Java Edition as a team — with you.
+**AI agents that play Minecraft: Java Edition as a team, with you.**
 
-Each agent is an AI (Claude Code, or another model you choose) that controls one bot on a private Minecraft
-server running on your PC. They plan together on a task board, talk in chat, mine, build and farm, and work on
-whatever goal you give them. You watch from the dashboard or join the world in your own Minecraft and talk
-to them in chat.
+Each agent is an AI (Claude by default) controlling its own bot on a private Minecraft server on your PC.
+They talk in chat, share a task board, mine, build, farm, trade on their own market, and work on whatever
+goal you give them. Give them personalities and watch a society form, or tell them to fight. You can watch
+from the dashboard or join the world yourself and talk to them in chat.
+
+> 🎥 **See it in action:** *Claude makes SOCIETY in Minecraft!* on [The Context Window](https://www.youtube.com/@The-Context-Window)
+> 💬 **Help, updates and showing off what you built:** [Discord](https://discord.gg/2bSHCr22ww)
+> 🤖 **Installing it for someone with an AI agent?** Read [AGENTS.md](AGENTS.md).
 
 ---
 
-## 1. Before you install
+## Downloads
+
+| File | What it is |
+|---|---|
+| [**Hivecraft-Setup.exe**](https://github.com/48okqytest/hivecraft/releases/latest/download/Hivecraft-Setup.exe) | **The installer, start here.** One file that sets up everything: runtimes, server, bot libraries, the overlay mod and shortcuts. |
+| [Hivecraft.exe](https://github.com/48okqytest/hivecraft/releases/latest/download/Hivecraft.exe) | The launcher on its own, for people running from a clone of this repo (put it in the repo folder). The installer already includes it. |
+| `*.sha256` | Checksums to verify the downloads (`Get-FileHash .\Hivecraft-Setup.exe` in PowerShell must print the same hash). |
+
+Everything is on the [Releases page](https://github.com/48okqytest/hivecraft/releases/latest).
+
+---
+
+## Walkthrough: from zero to agents playing (about 10 minutes)
+
+### Step 1: Check you have the basics
+- A **Windows 10/11 64-bit** PC with about 2.5 GB free and 8 GB+ RAM.
+- **Minecraft: Java Edition** (you need to own it) and the official **Minecraft Launcher**, logged in once.
+- **An AI account** for the agents. The easiest is a **Claude subscription** (Pro/Max/Team): no key, you just
+  log in once. An Anthropic API key, OpenRouter or another compatible API also works (see *Requirements in detail* below).
+
+### Step 2: Run the installer
+1. Download **Hivecraft-Setup.exe** from the table above and double-click it.
+2. If Windows SmartScreen says *"Windows protected your PC"*, click **More info → Run anyway** (the app isn't code-signed yet).
+3. Go through the wizard:
+   - **Folder:** keep the default (`%LOCALAPPDATA%\Programs\Hivecraft`). No admin rights needed.
+   - **Minecraft EULA:** tick it (the server is Mojang's).
+   - **You:** your Minecraft username, plus the name you want the agents to call you.
+   - **AI provider:** pick one, paste a key if it needs one, choose a model and press **Test**.
+     *Claude subscription:* if Claude Code isn't installed, click **Install**, then log in when it asks.
+   - **Install:** it downloads Node.js, Java, the Minecraft server and the bot libraries (about 375 MB), then offers to open Hivecraft.
+
+### Step 3: Set up your agents
+In the **Hivecraft** window (Start menu or desktop shortcut):
+1. Under **Agents**, add up to 8 agents. Give each a **name** and, if you like, a **personality**
+   (*"grumpy but will help"*, *"good leader, likes money"*, ...). Personalities make society runs much more fun.
+2. Pick the **model**. Sonnet-class models are a good mix of smart and affordable.
+3. Choose **New world** (or *Continue last world*), your own mode (**Spectator** is best for watching),
+   and leave **Economy** and the **Overlay mod** on.
+4. Press **START**. Hivecraft starts the server, the bridge and the agents, and opens the Minecraft Launcher
+   with a **Hivecraft** installation selected.
+
+### Step 4: Join and give them a task
+1. Press **PLAY** in the Minecraft Launcher. You join the agents' server automatically.
+2. The agents introduce themselves and wait. **Type a task in Minecraft chat**, for example:
+   - *"Make a society. Decide roles, use the economy and build things together."*
+   - *"Split up, build your own bases, get as rich as you can, then come back and fight."*
+   - *"First one to smelt an iron ingot wins."*
+   - (in creative) *"Build-off: everyone build something amazing."*
+3. Talk to one agent with `@Name ...`. Your messages interrupt whatever they're doing.
+4. Useful keys in game: **V** opens the economy (shop, market, auctions, jobs), **H** the control screen,
+   **`** (backtick) the terminal, **J** the team HUD. The web dashboard is at `http://127.0.0.1:47960`.
+
+### Step 5: Stop
+Press **TERMINATE** in the Hivecraft window and every agent stops immediately. Next time you can pick
+**Continue last world** and the agents pick up their story where they left it.
+
+> ⚠ **Watch your costs.** Each agent is a full AI session that keeps thinking while it plays. On an API key,
+> expect roughly a few dollars **per agent per hour** with a Sonnet-class model. Start with 1–2 agents, set a
+> spending limit with your provider, and press TERMINATE when you're not watching.
+
+---
+
+## Credits
+
+Inspired by **[Emergent Garden](https://www.youtube.com/@EmergentGarden)** and
+**[Mindcraft](https://github.com/mindcraft-bots/mindcraft)**. Go check them out. Hivecraft is its own codebase,
+built on [mineflayer](https://github.com/PrismarineJS/mineflayer), with a launcher, installer, economy and a Fabric
+overlay mod on top.
+
+---
+
+## Requirements in detail
 
 You need:
 
@@ -34,7 +109,7 @@ You need:
 > session, check your provider's usage page, and set a spending limit there. On a subscription, several agents
 > drain your plan's usage limits fast. The provider **Test** button sends one tiny request (a fraction of a cent). **TERMINATE** in the launcher stops all agents immediately.
 
-## 2. Install
+## Install details
 
 1. Download `Hivecraft-Setup.exe` (and optionally `Hivecraft-Setup.exe.sha256` to check the download:
    `Get-FileHash .\Hivecraft-Setup.exe` in PowerShell must print the same hash).
@@ -52,14 +127,12 @@ Nothing is installed system-wide; everything lands in your Hivecraft folder.
 
 | Download | Why | Approx. size | From | Goes to |
 |---|---|---|---|---|
-| Node.js (portable, current LTS) | runs the bots, bridge and dashboard | ~30 MB | nodejs.org | `<folder>untime
-ode` |
-| Java runtime (Eclipse Temurin 21 JRE) | runs the Minecraft server | ~45 MB | api.adoptium.net (file served from github.com/adoptium) | `<folder>untime\java` |
-| Minecraft server 1.21.1 (`server.jar`) | the private world the agents play in | ~50 MB | Mojang (piston-data.mojang.com) | `<folder>pp\server` |
-| Bot libraries (npm packages) | Minecraft bot engine (mineflayer), pathfinding, MCP | ~250 MB on disk | registry.npmjs.org | `<folder>pp
-ode_modules` |
+| Node.js (portable, current LTS) | runs the bots, bridge and dashboard | ~30 MB | nodejs.org | `<folder>\runtime\node` |
+| Java runtime (Eclipse Temurin 21 JRE) | runs the Minecraft server | ~45 MB | api.adoptium.net (file served from github.com/adoptium) | `<folder>\runtime\java` |
+| Minecraft server 1.21.1 (`server.jar`) | the private world the agents play in | ~50 MB | Mojang (piston-data.mojang.com) | `<folder>\app\server` |
+| Bot libraries (npm packages) | Minecraft bot engine (mineflayer), pathfinding, MCP | ~250 MB on disk | registry.npmjs.org | `<folder>\app\node_modules` |
 | Fabric Loader + Fabric API (first START, by the launcher) | lets your Minecraft load the Hivecraft overlay mod | ~5 MB | meta.fabricmc.net, Modrinth | `%APPDATA%\.minecraft` (a separate **Hivecraft** profile + `hivecraft` game folder) |
-| Claude Code (only if you click *Install* on the Claude provider step) | the agent runtime | ~100 MB | Anthropic's official installer | `%USERPROFILE%\.localin` |
+| Claude Code (only if you click *Install* on the Claude provider step) | the agent runtime | ~100 MB | Anthropic's official installer | `%USERPROFILE%\.local\bin` |
 
 Total ≈ 375 MB of downloads; plan for ~2.5 GB of disk including worlds.
 
@@ -68,7 +141,7 @@ before use; npm packages are verified by npm against `package-lock.json`. If a r
 already on your PC (Node 20+, Java 21+), the installer reuses it instead of downloading. The installer itself
 contains only Hivecraft's own code and the overlay mod; it never bundles Minecraft files.
 
-## 3. Play
+## Playing
 
 1. Open **Hivecraft** (Start Menu or desktop shortcut).
 2. Type your agents' names (or keep the suggestions), pick the model, press **START**.
@@ -83,7 +156,7 @@ contains only Hivecraft's own code and the overlay mod; it never bundles Minecra
 
 Your other Minecraft installations and worlds are not touched: the Hivecraft profile uses its own game folder.
 
-## 4. Uninstall
+## Uninstall
 
 - **Settings → Apps → Installed apps → Hivecraft → Uninstall**, or run `Hivecraft-Setup.exe --uninstall`.
 - This removes the Hivecraft folder (program, downloaded Node/Java/server, config, logs) and its shortcuts.
@@ -95,7 +168,7 @@ Your other Minecraft installations and worlds are not touched: the Hivecraft pro
 - Your API key is never written to the config file; it is stored encrypted for your Windows user (DPAPI) in
   `%APPDATA%\Hivecraft\secrets.dat`. If you no longer need the key, also revoke it on your provider's website.
 
-## 5. Troubleshooting
+## Troubleshooting
 
 | Problem | Try |
 |---|---|
@@ -116,13 +189,13 @@ Self-checks: `Hivecraft.exe --selftest` (launcher file checks); from the install
 When asking for help, include `%TEMP%\hivecraft-setup.log` and the launcher log — they contain no API keys,
 but check them before sharing.
 
-## 6. Privacy
+## Privacy
 
 - Everything runs on your PC. The server and dashboard listen on `127.0.0.1` only.
 - Hivecraft sends chat, game state and screenshots the agents take **only to the AI provider you chose**, as part
   of the agents' prompts. Nothing is sent to the Hivecraft authors.
 
-## 7. Licenses
+## Licenses
 
 Hivecraft is MIT-licensed (`LICENSE`). Third-party components and their licenses are listed in
 `THIRD_PARTY_NOTICES.md`. Minecraft is a trademark of Mojang Synergies AB; Hivecraft is not affiliated with
